@@ -140,7 +140,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop();
+                //Navigator.of(context).pop();
+                context.pop();
                 goToNextQuestion();
               },
               child: const Text('Continuar'),
@@ -160,8 +161,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
       });
     } else {
       // Redirigir a la pantalla de puntaje
-      //context.pushNamed(ScoreScreen.name);
-      context.go(ScoreScreen.name, extra: score);
+      context.pushNamed(ScoreScreen.name);
+      //context.go(ScoreScreen.name, extra: score);
     }
   }
 }
