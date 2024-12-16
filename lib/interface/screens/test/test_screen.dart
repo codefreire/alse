@@ -1,6 +1,10 @@
+import 'package:alse/interface/screens/authentication/signin_screen.dart';
+import 'package:alse/interface/screens/test/test_two_screen.dart';
 import 'package:alse/interface/widgets/shared/custom_label_widget.dart';
 import 'package:alse/interface/widgets/shared/progress_bar_widget.dart';
+import 'package:alse/services/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class TestScreen extends StatefulWidget {
@@ -12,102 +16,95 @@ class TestScreen extends StatefulWidget {
 }
 
 class _TestScreenState extends State<TestScreen> {
-  late YoutubePlayerController _videoController;
+  final AuthService _authService = AuthService();
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+  bool _isLoading = false;
 
-  @override
-  void initState() {
-    super.initState();
-    _videoController = YoutubePlayerController(
-      initialVideoId: YoutubePlayer.convertUrlToId(
-        'https://www.youtube.com/watch?v=i0dJpzvMV94',
-      )!,
-      flags: const YoutubePlayerFlags(
-        autoPlay: false,
-        loop: false,
-      ),
-    );
+  Future<void> _register() async {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        _isLoading = true;
+      });
+
+      final errorMessage = await _authService.register(
+        _emailController.text,
+        _passwordController.text,
+        _confirmPasswordController.text,
+      );
+
+      setState(() {
+        _isLoading = false;
+      });
+
+      if (errorMessage == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+                'Registro exitoso. Revisa tu correo para verificar tu cuenta.'),
+          ),
+        );
+        context.goNamed(TestTwoScreen.name);
+      } else {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(errorMessage)));
+      }
+    }
   }
 
   @override
   void dispose() {
-    _videoController.dispose(); // Libera recursos al salir
+    _emailController.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
-
-    return SafeArea(
-      child: Scaffold(
-        body: Center(
+    return Scaffold(
+      appBar: AppBar(title: const Text('Registro')),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          key: _formKey,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Expanded(
-                flex: 2,
-                child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
-                  alignment: Alignment.centerLeft,
-                  child: const CustomLabelWidget(
-                    text: 'Hola Alex',
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+              TextFormField(
+                controller: _emailController,
+                decoration: const InputDecoration(labelText: 'Email'),
+                validator: (value) =>
+                    value == null || value.isEmpty ? 'Ingresa tu email' : null,
               ),
-              Expanded(
-                flex: 2,
-                child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
-                  child: const CustomLabelWidget(
-                    text:
-                        'Antes de usar la aplicación, ¡conoce estos datos esenciales!" Mira este breve video para descubrir mitos y consejos prácticos sobre el lenguaje de señas. Te dará una base sólida y te ayudará a aprender más rápido y con confianza antes de sumergirte en las lecciones.',
-                    maxLines: 6,
-                    textAlign: TextAlign.center,
-                    fontSize: 12,
-                  ),
-                ),
+              const SizedBox(height: 20),
+              TextFormField(
+                controller: _passwordController,
+                decoration: const InputDecoration(labelText: 'Password'),
+                obscureText: true,
+                validator: (value) => value == null || value.isEmpty
+                    ? 'Ingresa tu contraseña'
+                    : null,
               ),
-              Expanded(
-                flex: 4,
-                child: Container(
-                    margin:
-                        EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
-                    padding: EdgeInsets.symmetric(
-                        vertical: (screenHeight * (2 / 16)) * 0.20),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: YoutubePlayer(
-                        controller: _videoController,
-                        showVideoProgressIndicator: true,
-                        progressIndicatorColor: Colors.red,
-                      ),
-                    )),
+              const SizedBox(height: 20),
+              TextFormField(
+                controller: _confirmPasswordController,
+                decoration:
+                    const InputDecoration(labelText: 'Confirm Password'),
+                obscureText: true,
+                validator: (value) => value == null || value.isEmpty
+                    ? 'Ingresa tu contraseña'
+                    : null,
               ),
-              Expanded(
-                flex: 3,
-                child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
-                  alignment: Alignment.center,
-                  child: const CustomLabelWidget(
-                    text:
-                        'Aprende lenguaje de señas de forma divertida y práctica. Avanza en tres niveles, explora temas, completa ejercicios y mejora con videos tutoriales para lograr una comunicación fluida.',
-                    maxLines: 4,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 5,
-                child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
-                  child: const ProgressBarWidget(
-                    progress: 0.6,
-                    points: 120,
-                  ),
-                ),
-              ),
+              const SizedBox(height: 30),
+              _isLoading
+                  ? const CircularProgressIndicator()
+                  : ElevatedButton(
+                      onPressed: _register,
+                      child: const Text('Registrar'),
+                    ),
             ],
           ),
         ),

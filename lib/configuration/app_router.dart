@@ -14,10 +14,11 @@ import 'package:alse/interface/screens/profile/logout_screen.dart';
 import 'package:alse/interface/screens/profile/profile_screen.dart';
 import 'package:alse/interface/screens/profile/setting_screen.dart';
 import 'package:alse/interface/screens/test/test_screen.dart';
+import 'package:alse/interface/screens/test/test_two_screen.dart';
 import 'package:go_router/go_router.dart';
 
 final appRouter = GoRouter(
-  initialLocation: '/login',
+  initialLocation: '/testtwo',
   routes: [
     GoRoute(
       path: '/login',
@@ -98,6 +99,11 @@ final appRouter = GoRouter(
       path: '/logout',
       name: LogoutScreen.name,
       builder: (context, state) => const LogoutScreen(),
+    ),
+    GoRoute(
+      path: '/testtwo',
+      name: TestTwoScreen.name,
+      builder: (context, state) => const TestTwoScreen(),
     ),
   ],
 );

@@ -1,6 +1,5 @@
 import 'package:alse/configuration/app_colors.dart';
 import 'package:alse/interface/screens/home/main_screen.dart';
-import 'package:alse/interface/screens/level/level_screen.dart';
 import 'package:alse/interface/screens/level/question_screen.dart';
 import 'package:alse/interface/widgets/shared/custom_buttom_widget.dart';
 import 'package:flutter/material.dart';

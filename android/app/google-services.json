@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "967299742878",
+    "project_id": "alse-7320e",
+    "storage_bucket": "alse-7320e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:967299742878:android:1589a10a64ee0aba044f8f",
+        "android_client_info": {
+          "package_name": "com.alse.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXYVKgLO6u_MI03rbCCJjc8qmmGe9_zu8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

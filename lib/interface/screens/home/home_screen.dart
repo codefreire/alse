@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     _videoController = YoutubePlayerController(
       initialVideoId: YoutubePlayer.convertUrlToId(
-        'https://www.youtube.com/watch?v=i0dJpzvMV94',
+        'https://www.youtube.com/watch?v=eF6orKu-Spo',
       )!,
       flags: const YoutubePlayerFlags(
         autoPlay: false,

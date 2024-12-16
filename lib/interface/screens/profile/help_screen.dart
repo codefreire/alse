@@ -38,8 +38,8 @@ class HelpScreen extends StatelessWidget {
                   margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
                   padding: EdgeInsets.only(top: (availableHeight * (3 / 17)) * 0.50),
                   child: const CustomLabelWidget(
-                    text: 'Reset Password',
-                    fontSize: 30,
+                    text: 'Cambie su contraseña',
+                    fontSize: 28,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -47,7 +47,7 @@ class HelpScreen extends StatelessWidget {
                   height: availableHeight * (2 / 17),
                   margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
                   child: const CustomLabelWidget(
-                    text: 'Reset Your Password To Regain Access To your Learning Journey',
+                    text: 'Restablezca su contraseña para recuperar el acceso a su recorrido de aprendizaje',
                     maxLines: 2,
                     textAlign: TextAlign.center,
                   ),
@@ -56,7 +56,7 @@ class HelpScreen extends StatelessWidget {
                   height: availableHeight * (2 / 17),
                   margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
                   child: CustomTextInputWidget(
-                    label: 'New Password',
+                    label: 'Nueva contraseña',
                     placeholder: 'Ingrese su contraseña',
                     controller: newPasswordController,
                     isPassword: true,
@@ -66,7 +66,7 @@ class HelpScreen extends StatelessWidget {
                   height: availableHeight * (3 / 17),
                   margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
                   child: CustomTextInputWidget(
-                    label: 'Confirm Password',
+                    label: 'Confirmar Contraseña',
                     placeholder: 'Confirme su contraseña',
                     controller: confirmPasswordController,
                     isPassword: true,
@@ -77,7 +77,7 @@ class HelpScreen extends StatelessWidget {
                   padding: EdgeInsets.only(bottom: (availableHeight * (7 / 17)) * 0.83),
                   margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
                   child: CustomButtomWidget(
-                    text: 'SAVE',
+                    text: 'GUARDAR',
                     radius: 5,
                     onPressed: () => {context.pop()},
                     textFontSize: 20,

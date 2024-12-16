@@ -21,9 +21,9 @@ class LogoutScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const CustomLabelWidget(text: 'Cerrar Secion', fontWeight: FontWeight.bold,),
+            const CustomLabelWidget(text: 'Cerrar Sesión', fontWeight: FontWeight.bold,),
             const SizedBox(height: 10,),
-            const CustomLabelWidget(text: 'Seguro?'),
+            const CustomLabelWidget(text: '¿Seguro?'),
             const SizedBox(height: 20,),
             Container(
               height: 40,

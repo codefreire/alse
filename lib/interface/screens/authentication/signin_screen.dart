@@ -4,6 +4,7 @@ import 'package:alse/interface/screens/home/main_screen.dart';
 import 'package:alse/interface/widgets/shared/custom_buttom_widget.dart';
 import 'package:alse/interface/widgets/shared/custom_label_widget.dart';
 import 'package:alse/interface/widgets/shared/custom_text_input_widget.dart';
+import 'package:alse/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -37,7 +38,7 @@ class _SigninScreenState extends State<SigninScreen> {
                   padding:
                       EdgeInsets.only(top: (screenHeight * (2 / 16)) * 0.30),
                   child: const CustomLabelWidget(
-                    text: 'SIGN IN',
+                    text: 'Iniciar Sesión',
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
                   ),
@@ -47,7 +48,7 @@ class _SigninScreenState extends State<SigninScreen> {
                   margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
                   child: const CustomLabelWidget(
                     text:
-                        'Sign In To Access Your Personalized Learning Journey',
+                        'Inicie sesión para acceder a su recorrido de aprendizaje personalizado',
                     maxLines: 2,
                     textAlign: TextAlign.center,
                   ),
@@ -58,7 +59,7 @@ class _SigninScreenState extends State<SigninScreen> {
                   padding:
                       EdgeInsets.only(top: (screenHeight * (2 / 16)) * 0.15),
                   child: CustomTextInputWidget(
-                      label: 'Email Here',
+                      label: 'Correo',
                       placeholder: 'Ingrese su email',
                       controller: emailController),
                 ),
@@ -68,7 +69,7 @@ class _SigninScreenState extends State<SigninScreen> {
                   padding:
                       EdgeInsets.only(top: (screenHeight * (2 / 16)) * 0.15),
                   child: CustomTextInputWidget(
-                    label: 'Password',
+                    label: 'Contraseña',
                     placeholder: 'Ingrese su contraseña',
                     controller: passwordController,
                     isPassword: true,
@@ -78,7 +79,7 @@ class _SigninScreenState extends State<SigninScreen> {
                   alignment: Alignment.centerRight,
                   margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
                   child: const CustomLabelWidget(
-                    text: 'Forgot Password?',
+                    text: '¿Has olvidado tu contraseña?',
                     fontSize: 12,
                   ),
                 ),
@@ -88,50 +89,11 @@ class _SigninScreenState extends State<SigninScreen> {
                   padding: EdgeInsets.symmetric(
                       vertical: (screenHeight * (2 / 16)) * 0.25),
                   child: CustomButtomWidget(
-                    text: 'SIGN IN',
+                    text: 'INICIAR SESIÓN',
                     radius: 5,
                     onPressed: () => {context.pushNamed(MainScreen.name)},
                     textFontSize: 20,
                     colorText: AppColors.tertiaryColor,
-                  ),
-                ),
-                Container(
-                  height: screenHeight * (2 / 16),
-                  margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
-                  padding: EdgeInsets.only(
-                      left: screenWidth * 0.075,
-                      right: screenWidth * 0.075,
-                      bottom: (screenHeight * (2 / 16)) * 0.1),
-                  child: const Row(
-                    children: [
-                      Expanded(
-                        child: Divider(
-                          color: AppColors.primaryColor,
-                          endIndent: 10,
-                        ),
-                      ),
-                      CustomLabelWidget(text: 'Or Sign In with'),
-                      Expanded(
-                        child: Divider(
-                          color: AppColors.primaryColor,
-                          indent: 10,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  height: screenHeight * (2 / 16),
-                  margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
-                  padding:
-                      EdgeInsets.only(bottom: (screenHeight * (2 / 16)) * 0.5),
-                  child: CustomButtomWidget(
-                    text: 'Sign In With Google',
-                    onPressed: () => {context.pushNamed(MainScreen.name)},
-                    radius: 5,
-                    iconPath: 'assets/google_icon.png',
-                    color: AppColors.tertiaryColor,
-                    colorBorder: AppColors.primaryColor,
                   ),
                 ),
                 Container(
@@ -143,11 +105,11 @@ class _SigninScreenState extends State<SigninScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Don't have an Account?",
+                        "¿No tienes una cuenta?",
                         style: TextStyle(decoration: TextDecoration.underline),
                       ),
                       CustomLabelWidget(
-                        text: 'Sign Up here',
+                        text: 'Regístrate aquí',
                         isLink: true,
                         routeName: SignupScreen.name,
                         fontWeight: FontWeight.bold,

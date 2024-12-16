@@ -1,4 +1,4 @@
-package com.example.alse
+package com.alse.app
 
 import io.flutter.embedding.android.FlutterActivity
 

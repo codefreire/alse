@@ -4,6 +4,7 @@ import 'package:alse/interface/screens/home/main_screen.dart';
 import 'package:alse/interface/widgets/shared/custom_buttom_widget.dart';
 import 'package:alse/interface/widgets/shared/custom_label_widget.dart';
 import 'package:alse/interface/widgets/shared/custom_text_input_widget.dart';
+import 'package:alse/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -17,15 +18,57 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  final AuthService _authService = AuthService();
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+  bool _isLoading = false;
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
-    final fullnameController = TextEditingController();
-    final confirmPasswordController = TextEditingController();
+    //final emailController = TextEditingController();
+    //final passwordController = TextEditingController();
+    //final fullnameController = TextEditingController();
+    //final confirmPasswordController = TextEditingController();
+
+    Future<void> _register() async {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        _isLoading = true;
+      });
+
+      final errorMessage = await _authService.register(
+        _emailController.text,
+        _passwordController.text,
+        _confirmPasswordController.text,
+      );
+
+      setState(() {
+        _isLoading = false;
+      });
+
+      if (errorMessage == null) {
+        context.goNamed(SigninScreen.name);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Registro exitoso. Inicia sesión.')),
+        );
+      } else {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(errorMessage)));
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
 
     return SafeArea(
       child: Scaffold(
@@ -36,9 +79,10 @@ class _SignupScreenState extends State<SignupScreen> {
                 Container(
                   height: screenHeight * (2 / 17),
                   margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
-                  padding: EdgeInsets.only(top: (screenHeight * (2 / 17)) * 0.30),
+                  padding:
+                      EdgeInsets.only(top: (screenHeight * (2 / 17)) * 0.30),
                   child: const CustomLabelWidget(
-                    text: 'SIGN UP',
+                    text: 'Regístro',
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
                   ),
@@ -48,36 +92,75 @@ class _SignupScreenState extends State<SignupScreen> {
                   margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
                   child: const CustomLabelWidget(
                     text:
-                        'Create Your Account To Embark On Your Educational Adventure',
+                        'Crea tu cuenta para embarcarte en tu aventura educativa',
                     maxLines: 2,
                     textAlign: TextAlign.center,
                   ),
                 ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextFormField(
+                      controller: _emailController,
+                      decoration: const InputDecoration(labelText: 'Email'),
+                      validator: (value) =>
+                      value == null || value.isEmpty ? 'Ingresa tu email' : null,
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      controller: _passwordController,
+                      decoration: const InputDecoration(labelText: 'Password'),
+                      obscureText: true,
+                      validator: (value) =>
+                      value == null || value.isEmpty ? 'Ingresa tu contraseña' : null,
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      controller: _confirmPasswordController,
+                      decoration: const InputDecoration(labelText: 'Confirm Password'),
+                      obscureText: true,
+                      validator: (value) =>
+                      value == null || value.isEmpty ? 'Confirma tu contraseña' : null,
+                    ),
+                    const SizedBox(height: 30),
+                   _isLoading
+                      ? const CircularProgressIndicator()
+                      : ElevatedButton(
+                        onPressed: _register,
+                        child: const Text('Registrar'),
+                    ),
+                  ],
+                )
+                // Container(
+                //   height: screenHeight * (2 / 17),
+                //   margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
+                //   padding:
+                //       EdgeInsets.only(top: (screenHeight * (2 / 17)) * 0.15),
+                //   child: CustomTextInputWidget(
+                //       label: 'Nombre',
+                //       placeholder: 'Ingrese su nombre completo',
+                //       controller: fullnameController),
+                // ),
+
+                /*
                 Container(
                   height: screenHeight * (2 / 17),
                   margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
-                  padding: EdgeInsets.only(top: (screenHeight * (2 / 17)) * 0.15),
+                  padding:
+                      EdgeInsets.only(top: (screenHeight * (2 / 17)) * 0.15),
                   child: CustomTextInputWidget(
-                      label: 'Full Name',
-                      placeholder: 'Ingrese su nombre completo',
-                      controller: fullnameController),
-                ),
-                Container(
-                  height: screenHeight * (2 / 17),
-                  margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
-                  padding: EdgeInsets.only(top: (screenHeight * (2 / 17)) * 0.15),
-                  child: CustomTextInputWidget(
-                    label: 'Email Here',
+                    label: 'Correo aquí',
                     placeholder: 'Ingrese su email',
                     controller: emailController,
                   ),
                 ),
                 Container(
                   height: screenHeight * (2 / 17),
-                  padding: EdgeInsets.only(top: (screenHeight * (2 / 17)) * 0.15),
+                  padding:
+                      EdgeInsets.only(top: (screenHeight * (2 / 17)) * 0.15),
                   margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
                   child: CustomTextInputWidget(
-                    label: 'Password',
+                    label: 'Contraseña',
                     placeholder: 'Ingrese su contraseña',
                     controller: passwordController,
                     isPassword: true,
@@ -85,10 +168,11 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 Container(
                   height: screenHeight * (2 / 17),
-                  padding: EdgeInsets.only(top: (screenHeight * (2 / 17)) * 0.15),
+                  padding:
+                      EdgeInsets.only(top: (screenHeight * (2 / 17)) * 0.15),
                   margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
                   child: CustomTextInputWidget(
-                    label: 'Confirm Password',
+                    label: 'Confirmar contraseña',
                     placeholder: 'Confirme su contraseña',
                     controller: confirmPasswordController,
                     isPassword: true,
@@ -97,53 +181,21 @@ class _SignupScreenState extends State<SignupScreen> {
                 Container(
                   height: screenHeight * (2 / 17),
                   margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
-                  padding: EdgeInsets.symmetric(vertical: (screenHeight * (2 / 17)) * 0.25),
+                  padding: EdgeInsets.symmetric(
+                      vertical: (screenHeight * (2 / 17)) * 0.25),
                   child: CustomButtomWidget(
-                    text: 'SIGN IN',
+                    text: 'REGISTRARSE',
                     radius: 5,
                     onPressed: () => {context.pushNamed(MainScreen.name)},
                     textFontSize: 20,
                     colorText: AppColors.tertiaryColor,
                   ),
                 ),
-                Container(
-                  height: screenHeight * (1 / 17),
-                  margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
-                  padding: EdgeInsets.only(
-                      left: screenWidth * 0.075,
-                      right: screenWidth * 0.075,
-                      bottom: (screenHeight * (2 / 17)) * 0.1),
-                  child: const Row(
-                    children: [
-                      Expanded(
-                        child: Divider(
-                          color: AppColors.primaryColor,
-                          endIndent: 10,
-                        ),
-                      ),
-                      CustomLabelWidget(text: 'Or Sign In with'),
-                      Expanded(
-                        child: Divider(
-                          color: AppColors.primaryColor,
-                          indent: 10,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  height: screenHeight * (1 / 17),
-                  margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
-                  child: CustomButtomWidget(
-                    text: 'Sign Un With Google',
-                    onPressed: () => {context.pushNamed(MainScreen.name)},
-                    radius: 5,
-                    iconPath: 'assets/google_icon.png',
-                    color: AppColors.tertiaryColor,
-                    colorBorder: AppColors.primaryColor,
-                  ),
-                ),
-                Container(
+
+                */
+
+
+                ,Container(
                   height: screenHeight * (2 / 17),
                   margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
                   padding:
@@ -152,11 +204,11 @@ class _SignupScreenState extends State<SignupScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Already have an Account?",
+                        "¿Ya tienes una cuenta?",
                         style: TextStyle(decoration: TextDecoration.underline),
                       ),
                       CustomLabelWidget(
-                        text: 'Sign Ip here',
+                        text: 'Inicia sesión aquí',
                         isLink: true,
                         routeName: SigninScreen.name,
                         fontWeight: FontWeight.bold,
