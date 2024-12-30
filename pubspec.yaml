@@ -68,8 +68,12 @@ flutter:
     - assets/alse_logo.png
     - assets/google_icon.png
     - assets/alse_profile.png
-    - assets/images/
+    - assets/videos/videointro.mp4
+    - assets/videos/intro.mp4
     - assets/videos/
+    - assets/images/
+    - assets/
+
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

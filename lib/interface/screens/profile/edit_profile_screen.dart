@@ -21,15 +21,17 @@ class EditProfileScreen extends StatefulWidget {
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
   final fullnameController = TextEditingController();
-  final emailController = TextEditingController();
+  //final emailController = TextEditingController();
 
   File? _profileImage; // Para almacenar la imagen seleccionada
   final String _defaultImage = 'assets/alse_profile.png';
+  //String _userName = "Alse";
 
   @override
   void initState() {
     super.initState();
     _loadProfileImage();
+    _loadUserName();
   }
 
   // Método para cargar la imagen guardada de forma persistente
@@ -102,6 +104,22 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     );
   }
 
+  // Método para cargar el nombre guardado de forma persistente
+  Future<void> _loadUserName() async {
+    final prefs = await SharedPreferences.getInstance();
+    final savedName = prefs.getString('userName') ?? "Alse";
+    // setState(() {
+    //   _userName = savedName;
+    //   fullnameController.text = savedName;
+    // });
+  }
+
+  // Método para guardar el nombre de forma persistente
+  Future<void> _saveUserName(String name) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('userName', name);
+  }
+
   @override
   Widget build(BuildContext context) {
     //final fullnameController = TextEditingController();
@@ -150,22 +168,22 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               ],
             ),
             const SizedBox(height: 16),
-            const Text(
-              'Sidra Idrees',
-              style: TextStyle(
+            Text(
+              context.watch<UserProfileProvider>().username,
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: AppColors.primaryColor,
               ),
             ),
-            const SizedBox(height: 4),
-            const Text(
-              'youremail@gmail.com',
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey,
-              ),
-            ),
+            // const SizedBox(height: 4),
+            // const Text(
+            //   'youremail@gmail.com',
+            //   style: TextStyle(
+            //     fontSize: 14,
+            //     color: Colors.grey,
+            //   ),
+            // ),
             const Divider(
               height: 40,
               thickness: 1,
@@ -176,18 +194,26 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               placeholder: '',
               controller: fullnameController,
             ),
-            CustomTextInputWidget(
-              label: 'Email',
-              placeholder: '',
-              controller: emailController,
-            ),
+            // CustomTextInputWidget(
+            //   label: 'Email',
+            //   placeholder: '',
+            //   controller: emailController,
+            // ),
             const SizedBox(
               height: 40,
             ),
             CustomButtomWidget(
               text: 'Actualizar',
-              onPressed: () {
-                context.pop();
+              onPressed: () async {
+                final newName = fullnameController.text.trim();
+                if (newName.isNotEmpty) {
+                  await context.read<UserProfileProvider>().updateUsername(newName);
+                  //await _saveUserName(newName);
+                  // setState(() {
+                  //    _userName = newName;
+                  // });
+                  context.pop();
+                }
               },
             )
           ],

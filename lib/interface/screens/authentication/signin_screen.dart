@@ -18,13 +18,120 @@ class SigninScreen extends StatefulWidget {
 }
 
 class _SigninScreenState extends State<SigninScreen> {
+  final AuthService _authService = AuthService();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  bool _isLoading = false;
+  
+  Future<void> _login() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    final errorMessage = await _authService.login(
+      _emailController.text,
+      _passwordController.text,
+    );
+
+    setState(() {
+      _isLoading = false;
+    });
+
+    if (errorMessage == null) {
+      context.goNamed(MainScreen.name);
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(errorMessage)));
+    }
+  }
+
+  Future<void> _showForgotPasswordDialog() async {
+    final TextEditingController emailController = TextEditingController();
+    bool isLoading = false;
+
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              title: const Text('Recuperar Contraseña'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text(
+                    'Ingresa tu correo electrónico para enviar un enlace de restablecimiento de contraseña.',
+                  ),
+                  const SizedBox(height: 16),
+                  TextField(
+                    controller: emailController,
+                    decoration: const InputDecoration(
+                      labelText: 'Correo',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                  if (isLoading) const SizedBox(height: 16),
+                  if (isLoading) const CircularProgressIndicator(),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Cierra el modal
+                  },
+                  child: const Text('Cancelar'),
+                ),
+                TextButton(
+                  onPressed: isLoading
+                      ? null
+                      : () async {
+                          setState(() {
+                            isLoading = true;
+                          });
+
+                          final errorMessage = await _authService.resetPassword(
+                            emailController.text,
+                          );
+
+                          setState(() {
+                            isLoading = false;
+                          });
+
+                          if (errorMessage == null) {
+                            Navigator.of(context).pop();
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Correo de restablecimiento enviado.'),
+                              ),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text(errorMessage)),
+                            );
+                          }
+                        },
+                  child: const Text('Enviar'),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    // Liberar los recursos de los controladores
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
 
     return SafeArea(
       child: Scaffold(
@@ -61,7 +168,7 @@ class _SigninScreenState extends State<SigninScreen> {
                   child: CustomTextInputWidget(
                       label: 'Correo',
                       placeholder: 'Ingrese su email',
-                      controller: emailController),
+                      controller: _emailController),
                 ),
                 Container(
                   height: screenHeight * (2 / 16),
@@ -71,18 +178,25 @@ class _SigninScreenState extends State<SigninScreen> {
                   child: CustomTextInputWidget(
                     label: 'Contraseña',
                     placeholder: 'Ingrese su contraseña',
-                    controller: passwordController,
+                    controller: _passwordController,
                     isPassword: true,
                   ),
                 ),
                 Container(
                   alignment: Alignment.centerRight,
                   margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
-                  child: const CustomLabelWidget(
-                    text: '¿Has olvidado tu contraseña?',
-                    fontSize: 12,
+                  child: GestureDetector(
+                    onTap: _showForgotPasswordDialog,
+                    child: const CustomLabelWidget(
+                      text: '¿Has olvidado tu contraseña?',
+                      fontSize: 12,
+                      isLink: true,
+                    ),
                   ),
                 ),
+                _isLoading
+                  ? const CircularProgressIndicator()
+                  :
                 Container(
                   height: screenHeight * (2 / 16),
                   margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
@@ -91,7 +205,7 @@ class _SigninScreenState extends State<SigninScreen> {
                   child: CustomButtomWidget(
                     text: 'INICIAR SESIÓN',
                     radius: 5,
-                    onPressed: () => {context.pushNamed(MainScreen.name)},
+                    onPressed: _login,
                     textFontSize: 20,
                     colorText: AppColors.tertiaryColor,
                   ),

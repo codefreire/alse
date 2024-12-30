@@ -15,7 +15,10 @@ class LogoutScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
-        automaticallyImplyLeading: false,
+        //automaticallyImplyLeading: false,
+        iconTheme: const IconThemeData(
+            color: AppColors.tertiaryColor,
+        ),
       ),
       body: Center(
         child: Column(

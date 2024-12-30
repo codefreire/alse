@@ -15,93 +15,98 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final profileImage = context.watch<UserProfileProvider>().profileImage;
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 40),
-            // Avatar e información del usuario
-            Row(
-              children: [
-                CircleAvatar(
-                  radius: 50,
-                  backgroundImage: profileImage != null
-                  ? FileImage(profileImage)
-                  : const AssetImage('assets/alse_profile.png')
-                      as ImageProvider, // Imagen predeterminada
-                ),
-                const SizedBox(height: 16),
-                const Padding(
-                  padding: EdgeInsets.only(left: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+    return FutureBuilder(
+      future: context.read<UserProfileProvider>().loadUserProfile(), // Esperar que el perfil se cargue
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          // Mientras esperamos, mostramos un cargando o similar
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else {
+          final profileImage = context.watch<UserProfileProvider>().profileImage;
+          final username = context.watch<UserProfileProvider>().username;
+
+          return Scaffold(
+            body: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 40),
+                  // Avatar e información del usuario
+                  Row(
                     children: [
-                      Text(
-                        'Sidra Idrees',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.primaryColor,
-                        ),
+                      CircleAvatar(
+                        radius: 50,
+                        backgroundImage: profileImage != null
+                            ? FileImage(profileImage)
+                            : const AssetImage('assets/alse_profile.png')
+                                as ImageProvider, // Imagen predeterminada
                       ),
-                      SizedBox(height: 4),
-                      Text(
-                        'youremail@gmail.com',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey,
+                      const SizedBox(height: 16),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              username,
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.primaryColor,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
-                ),
-              ],
+                  const Divider(
+                    height: 40,
+                    thickness: 1,
+                    color: Colors.grey,
+                  ),
+                  // Opciones de la lista
+                  OptionItem(
+                    icon: Icons.person,
+                    label: 'Edit Profile',
+                    onTap: () {
+                      // Acción para editar el perfil
+                      context.pushNamed(EditProfileScreen.name);
+                    },
+                  ),
+                  OptionItem(
+                    icon: Icons.settings,
+                    label: 'Setting',
+                    onTap: () {
+                      // Acción para ajustes
+                      context.pushNamed(SettingScreen.name);
+                    },
+                  ),
+                  OptionItem(
+                    icon: Icons.help,
+                    label: 'Help',
+                    onTap: () {
+                      // Acción para ayuda
+                      context.pushNamed(HelpScreen.name);
+                    },
+                  ),
+                  OptionItem(
+                    icon: Icons.logout,
+                    label: 'Logout',
+                    onTap: () {
+                      // Acción para cerrar sesión
+                      context.pushNamed(LogoutScreen.name);
+                    },
+                  ),
+                ],
+              ),
             ),
-
-            const Divider(
-              height: 40,
-              thickness: 1,
-              color: Colors.grey,
-            ),
-            // Opciones de la lista
-            OptionItem(
-              icon: Icons.person,
-              label: 'Edit Profile',
-              onTap: () {
-                // Acción para editar el perfil
-                context.pushNamed(EditProfileScreen.name);
-              },
-            ),
-            OptionItem(
-              icon: Icons.settings,
-              label: 'Setting',
-              onTap: () {
-                // Acción para ajustes
-                context.pushNamed(SettingScreen.name);
-              },
-            ),
-            OptionItem(
-              icon: Icons.help,
-              label: 'Help',
-              onTap: () {
-                // Acción para ayuda
-                context.pushNamed(HelpScreen.name);
-              },
-            ),
-            OptionItem(
-              icon: Icons.logout,
-              label: 'Logout',
-              onTap: () {
-                // Acción para cerrar sesión
-                context.pushNamed(LogoutScreen.name);
-              },
-            ),
-          ],
-        ),
-      ),
+          );
+        }
+      },
     );
   }
 }
@@ -129,7 +134,8 @@ class OptionItem extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: AppColors.secondaryColor, // Cambia este color si es necesario
+                color: AppColors
+                    .secondaryColor, // Cambia este color si es necesario
                 borderRadius: BorderRadius.circular(19),
               ),
               child: Icon(

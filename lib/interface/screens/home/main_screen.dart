@@ -34,10 +34,10 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.primaryColor,
-        automaticallyImplyLeading: false,
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: AppColors.primaryColor,
+      //   automaticallyImplyLeading: false,
+      // ),
       body: _screens[_selectedIndex],
       
       bottomNavigationBar: BottomNavigationBar(

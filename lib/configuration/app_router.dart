@@ -15,10 +15,11 @@ import 'package:alse/interface/screens/profile/profile_screen.dart';
 import 'package:alse/interface/screens/profile/setting_screen.dart';
 import 'package:alse/interface/screens/test/test_screen.dart';
 import 'package:alse/interface/screens/test/test_two_screen.dart';
+import 'package:alse/interface/screens/test/test_video.dart';
 import 'package:go_router/go_router.dart';
 
 final appRouter = GoRouter(
-  initialLocation: '/testtwo',
+  initialLocation: '/signin',
   routes: [
     GoRoute(
       path: '/login',
@@ -104,6 +105,11 @@ final appRouter = GoRouter(
       path: '/testtwo',
       name: TestTwoScreen.name,
       builder: (context, state) => const TestTwoScreen(),
+    ),
+    GoRoute(
+      path: '/testvideo',
+      name: TestVideoScreen.name,
+      builder: (context, state) => const TestVideoScreen(),
     ),
   ],
 );
