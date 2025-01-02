@@ -72,7 +72,7 @@ class LevelCardWidget extends StatelessWidget {
                       fontSize: 9,
                       color: bloqueado ? Colors.grey[600] : Colors.black,
                     ),
-                    maxLines: 4,
+                    maxLines: 5,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 16),

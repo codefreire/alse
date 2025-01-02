@@ -55,6 +55,14 @@ class _QuestionScreenState extends State<QuestionScreen> {
             ),
           ),
           const SizedBox(height: 16),
+          
+          const Text(
+            'Selecciona la respuesta',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+
+
+          const SizedBox(height: 24),
           YoutubePlayerBuilder(
             player: YoutubePlayer(
               controller: YoutubePlayerController(
@@ -71,11 +79,10 @@ class _QuestionScreenState extends State<QuestionScreen> {
               child: player,
             ),
           ),
-          const SizedBox(height: 24),
-          const Text(
-            'Selecciona la respuesta',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
+
+          
+          
+          
           const SizedBox(height: 16),
           Expanded(
             child: GridView.builder(

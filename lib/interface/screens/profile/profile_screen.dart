@@ -71,7 +71,7 @@ class ProfileScreen extends StatelessWidget {
                   // Opciones de la lista
                   OptionItem(
                     icon: Icons.person,
-                    label: 'Edit Profile',
+                    label: 'Editar Perfil',
                     onTap: () {
                       // Acción para editar el perfil
                       context.pushNamed(EditProfileScreen.name);
@@ -79,7 +79,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   OptionItem(
                     icon: Icons.settings,
-                    label: 'Setting',
+                    label: 'Ajustes',
                     onTap: () {
                       // Acción para ajustes
                       context.pushNamed(SettingScreen.name);
@@ -87,7 +87,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   OptionItem(
                     icon: Icons.help,
-                    label: 'Help',
+                    label: 'Ayuda',
                     onTap: () {
                       // Acción para ayuda
                       context.pushNamed(HelpScreen.name);
@@ -95,7 +95,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   OptionItem(
                     icon: Icons.logout,
-                    label: 'Logout',
+                    label: 'Salir',
                     onTap: () {
                       // Acción para cerrar sesión
                       context.pushNamed(LogoutScreen.name);

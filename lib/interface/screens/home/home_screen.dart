@@ -67,10 +67,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
                   child: const CustomLabelWidget(
                     text:
-                        'Antes de usar la aplicación, ¡conoce estos datos esenciales!" Mira este breve video para descubrir mitos y consejos prácticos sobre el lenguaje de señas.',
+                        '"Antes de usar la aplicación, ¡conoce estos datos esenciales!" Mira este breve video para descubrir mitos y consejos prácticos sobre el lenguaje de señas.',
                     maxLines: 6,
                     textAlign: TextAlign.center,
-                    fontSize: 11,
+                    //fontSize: 11,
                   ),
                 ),
               ),
@@ -100,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   alignment: Alignment.center,
                   child: const CustomLabelWidget(
                     text:
-                        'Aprende lenguaje de señas de forma divertida y práctica. Explora temas, completa ejercicios y mejora con videos tutoriales para lograr una comunicación fluida.',
+                        '"Aprende lenguaje de señas de forma divertida y práctica. Explora temas, completa ejercicios y mejora con videos tutoriales para lograr una comunicación fluida."',
                     maxLines: 4,
                     textAlign: TextAlign.center,
                   ),
