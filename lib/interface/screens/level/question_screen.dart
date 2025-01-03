@@ -1,3 +1,4 @@
+import 'package:alse/configuration/app_colors.dart';
 import 'package:alse/interface/screens/level/score_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -15,17 +16,17 @@ class QuestionScreen extends StatefulWidget {
 class _QuestionScreenState extends State<QuestionScreen> {
   final List<Map<String, dynamic>> questions = [
     {
-      'videoId': 'sIlkYSvBjOo',
+      'videoId': 'eF6orKu-Spo',
       'options': ['MANZANA', 'FRESAS', 'PIÑA', 'BANANA'],
       'answer': 'MANZANA',
     },
     {
-      'videoId': 'sIfscd-u-3c',
+      'videoId': 'eF6orKu-Spo',
       'options': ['NARANJA', 'MANDARINA', 'LIMÓN', 'PIÑA'],
       'answer': 'MANDARINA',
     },
     {
-      'videoId': 'HABzhzcm_pg',
+      'videoId': 'eF6orKu-Spo',
       'options': ['FRESA', 'UVA', 'SANDÍA', 'KIWI'],
       'answer': 'FRESA',
     },
@@ -38,65 +39,78 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     final currentQuestion = questions[currentQuestionIndex];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pregunta ${currentQuestionIndex + 1}/${questions.length}'),
+        backgroundColor: AppColors.primaryColor,
+        title: Text('Pregunta ${currentQuestionIndex + 1}/${questions.length}',
+            style: const TextStyle(color: AppColors.tertiaryColor)),
+        iconTheme: const IconThemeData(
+          color: AppColors.tertiaryColor,
+        ),
       ),
       body: Column(
         children: [
+          const SizedBox(
+            height: 30,
+          ),
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.15),
             child: LinearProgressIndicator(
               value: (currentQuestionIndex + 1) / questions.length,
               color: Colors.green,
               backgroundColor: Colors.grey[300],
+              minHeight: 20,
+              borderRadius: BorderRadius.circular(20),
             ),
           ),
-          const SizedBox(height: 16),
-          
+          const SizedBox(height: 40),
           const Text(
             'Selecciona la respuesta',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-
-
           const SizedBox(height: 24),
-          YoutubePlayerBuilder(
-            player: YoutubePlayer(
-              controller: YoutubePlayerController(
-                initialVideoId: currentQuestion['videoId'],
-                flags: const YoutubePlayerFlags(
-                  autoPlay: false,
-                  mute: false,
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
+            child: YoutubePlayerBuilder(
+              player: YoutubePlayer(
+                controller: YoutubePlayerController(
+                  initialVideoId: currentQuestion['videoId'],
+                  flags: const YoutubePlayerFlags(
+                    autoPlay: false,
+                    mute: false,
+                  ),
                 ),
+                showVideoProgressIndicator: true,
               ),
-              showVideoProgressIndicator: true,
-            ),
-            builder: (context, player) => ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: player,
+              builder: (context, player) => ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: player,
+              ),
             ),
           ),
-
-          
-          
-          
-          const SizedBox(height: 16),
+          const SizedBox(height: 30),
           Expanded(
             child: GridView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                crossAxisSpacing: 12,
-                mainAxisSpacing: 12,
-                childAspectRatio: 2.5,
+                crossAxisSpacing: 30,
+                mainAxisSpacing: 40,
+                childAspectRatio: 1.5,
               ),
               itemCount: currentQuestion['options'].length,
               itemBuilder: (context, index) {
                 final option = currentQuestion['options'][index];
                 return ElevatedButton(
+                  style: ButtonStyle(
+                    elevation: WidgetStateProperty.all(2),
+                    shape: WidgetStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    )),
+                  ),
                   onPressed: () {
                     setState(() {
                       selectedAnswer = option;
