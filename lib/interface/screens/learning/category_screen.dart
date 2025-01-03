@@ -71,7 +71,7 @@ class CategoryScreen extends StatelessWidget {
           {'titulo': 'Mango', 'videoId': 'eF6orKu-Spo'},
           {'titulo': 'Piña', 'videoId': 'eF6orKu-Spo'},
           {'titulo': 'Guayaba', 'videoId': 'eF6orKu-Spo'},
-          {'titulo': 'Maracuya', 'videoId': 'eF6orKu-Spo'},
+          {'titulo': 'Maracuyá', 'videoId': 'eF6orKu-Spo'},
           {'titulo': 'Naranjilla', 'videoId': 'eF6orKu-Spo'},
           {'titulo': 'Mora', 'videoId': 'eF6orKu-Spo'},
           {'titulo': 'Limón', 'videoId': 'eF6orKu-Spo'},

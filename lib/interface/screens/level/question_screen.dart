@@ -7,30 +7,63 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 class QuestionScreen extends StatefulWidget {
   static const name = 'question-screen';
 
-  const QuestionScreen({super.key});
+  final int level;
+
+  const QuestionScreen({super.key, required this.level});
 
   @override
   State<QuestionScreen> createState() => _QuestionScreenState();
 }
 
 class _QuestionScreenState extends State<QuestionScreen> {
-  final List<Map<String, dynamic>> questions = [
-    {
-      'videoId': 'eF6orKu-Spo',
-      'options': ['MANZANA', 'FRESAS', 'PIÑA', 'BANANA'],
-      'answer': 'MANZANA',
-    },
-    {
-      'videoId': 'eF6orKu-Spo',
-      'options': ['NARANJA', 'MANDARINA', 'LIMÓN', 'PIÑA'],
-      'answer': 'MANDARINA',
-    },
-    {
-      'videoId': 'eF6orKu-Spo',
-      'options': ['FRESA', 'UVA', 'SANDÍA', 'KIWI'],
-      'answer': 'FRESA',
-    },
-  ];
+  late List<Map<String, dynamic>> questions;
+
+  @override
+  void initState() {
+    super.initState();
+    // Seleccionar preguntas según el nivel
+    questions = _getQuestionsByLevel(widget.level);
+  }
+
+  List<Map<String, dynamic>> _getQuestionsByLevel(int level) {
+    switch (level) {
+      case 1:
+        return [
+          {'videoId': 'eF6orKu-Spo', 'options': ['H', 'E', 'D', 'A'], 'answer': 'E'},
+          {'videoId': 'eF6orKu-Spo', 'options': ['Amarillo', 'Rojo', 'Blanco', 'Verde'], 'answer': 'Amarillo'},
+          {'videoId': 'eF6orKu-Spo', 'options': ['Blanco', 'Negro', 'Naranja', 'Verde'], 'answer': 'Verde'},
+          {'videoId': 'eF6orKu-Spo', 'options': ['L', 'O', 'Ñ', 'I'], 'answer': 'Ñ'},
+          {'videoId': 'eF6orKu-Spo', 'options': ['C', 'S', 'F', 'K'], 'answer': 'C'},
+          {'videoId': 'eF6orKu-Spo', 'options': ['Morado', 'Amarillo', 'Azul', 'Naranja'], 'answer': 'Naranja'},
+          {'videoId': 'eF6orKu-Spo', 'options': ['G', 'U', 'T', 'N'], 'answer': 'T'},
+          {'videoId': 'eF6orKu-Spo', 'options': ['Negro', 'Azul', 'Rojo', 'Morado'], 'answer': 'Azul'},
+        ];
+      case 2:
+        return [
+          {'videoId': 'eF6orKu-Spo', 'options': ['Parqueadero', 'Biblioteca', 'Cafetería', 'Librería'], 'answer': 'Cafetería'},
+          {'videoId': 'eF6orKu-Spo', 'options': ['Piña', 'Guayaba', 'Plátano', 'Mora'], 'answer': 'Piña'},
+          {'videoId': 'eF6orKu-Spo', 'options': ['Librería', 'Biblioteca', 'Parqueadero', 'Baño'], 'answer': 'Biblioteca'},
+          {'videoId': 'eF6orKu-Spo', 'options': ['Aula', 'Laboratorio', 'Cafetería', 'Dispensario Médico'], 'answer': 'Dispensario Médico'},
+          {'videoId': 'eF6orKu-Spo', 'options': ['Limón', 'Guayaba', 'Maracuyá', 'Naranjilla'], 'answer': 'Naranjilla'},
+          {'videoId': 'eF6orKu-Spo', 'options': ['Laboratorio', 'Aula', 'Baño', 'Dispensario Médico'], 'answer': 'Baño'},
+          {'videoId': 'eF6orKu-Spo', 'options': ['Maracuyá', 'Plátano', 'Limón', 'Mango'], 'answer': 'Maracuyá'},
+          {'videoId': 'eF6orKu-Spo', 'options': ['Mora', 'Mango', 'Piña', 'Naranjilla'], 'answer': 'Mango'},
+        ];
+      case 3:
+        return [
+          {'videoId': 'eF6orKu-Spo', 'options': ['La biblioteca está cerca de la entrada principal', '¿Dónde quieres ir? Te puedo mostrar el camino', 'Mi nombre es', 'Hola, ¿Cómo te llamas?'], 'answer': '¿Dónde quieres ir? Te puedo mostrar el camino'},
+          {'videoId': 'eF6orKu-Spo', 'options': ['Si / No', '¿Dónde quieres ir? Te puedo mostrar el camino', '¿Te puedo ayudar con algo?', 'Hola, ¿Cómo te llamas?'], 'answer': 'Hola, ¿Cómo te llamas?'},
+          {'videoId': 'eF6orKu-Spo', 'options': ['¿Te puedo ayudar con algo?', 'El baño está por allá', 'Gracias por tu ayuda', 'La biblioteca está cerca de la entrada principal'], 'answer': 'Gracias por tu ayuda'},
+          {'videoId': 'eF6orKu-Spo', 'options': ['El baño está por allá', 'Mi nombre es', 'Gracias por tu ayuda', 'Si / No'], 'answer': 'El baño está por allá'},
+          {'videoId': 'eF6orKu-Spo', 'options': ['Hola, ¿Cómo te llamas?', '¿Dónde quieres ir? Te puedo mostrar el camino', 'Gracias por tu ayuda', 'La biblioteca está cerca de la entrada principal'], 'answer': 'La biblioteca está cerca de la entrada principal'},
+          {'videoId': 'eF6orKu-Spo', 'options': ['Mi nombre es', 'La biblioteca está cerca de la entrada principal', 'El baño está por allá', '¿Te puedo ayudar con algo?'], 'answer': 'Mi nombre es'},
+          {'videoId': 'eF6orKu-Spo', 'options': ['Si / No', '¿Te puedo ayudar con algo?', 'Mi nombre es', 'La biblioteca está cerca de la entrada principal'], 'answer': '¿Te puedo ayudar con algo?'},
+          {'videoId': 'eF6orKu-Spo', 'options': ['¿Dónde quieres ir? Te puedo mostrar el camino', 'El baño está por allá', 'Si / No', 'Mi nombre es'], 'answer': 'Si / No'},
+        ];
+      default:
+        return [];
+    }
+  }
 
   int currentQuestionIndex = 0;
   String? selectedAnswer;
@@ -167,7 +200,9 @@ class _QuestionScreenState extends State<QuestionScreen> {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.tertiaryColor,
-                  foregroundColor: isCorrect! ? AppColors.correctAnswer : AppColors.incorrectAnswer,
+                  foregroundColor: isCorrect!
+                      ? AppColors.correctAnswer
+                      : AppColors.incorrectAnswer,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),

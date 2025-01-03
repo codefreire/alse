@@ -16,9 +16,6 @@ class ScoreScreen extends StatelessWidget {
     const totalQuestions = 3; // Cambia según la cantidad de preguntas
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Resultados'),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

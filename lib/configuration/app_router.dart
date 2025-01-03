@@ -69,7 +69,11 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/question',
       name: QuestionScreen.name,
-      builder: (context, state) => const QuestionScreen(),
+      builder: (context, state) {
+        final level = state.extra as Map<String, dynamic>? ?? {'level': 1};
+        return QuestionScreen(level: level['level']);
+      },
+      //=> const QuestionScreen(),
     ),
     GoRoute(
       path: '/score',
