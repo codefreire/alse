@@ -7,4 +7,7 @@ class AppColors {
   static const Color tertiaryColor = Color(0xFFFFFFFF);
   static const Color backfroundLogin = Color(0xFFCAEFFD);
   static const Color selectedItem = Color(0xFF81b2d0);
+  static const Color progressQuestion = Color(0xFF64DE2A);
+  static const Color correctAnswer = Color(0xFF4CB900);
+  static const Color incorrectAnswer = Color(0xFFEF675E);
 }

@@ -60,7 +60,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
             padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.15),
             child: LinearProgressIndicator(
               value: (currentQuestionIndex + 1) / questions.length,
-              color: Colors.green,
+              color: AppColors.progressQuestion,
               backgroundColor: Colors.grey[300],
               minHeight: 20,
               borderRadius: BorderRadius.circular(20),
@@ -98,7 +98,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 30,
-                mainAxisSpacing: 40,
+                mainAxisSpacing: 30,
                 childAspectRatio: 1.5,
               ),
               itemCount: currentQuestion['options'].length,
@@ -119,7 +119,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                         score++;
                       }
                     });
-                    showResultDialog();
+                    showResultBottomSheet();
                   },
                   child: Text(option),
                 );
@@ -131,43 +131,55 @@ class _QuestionScreenState extends State<QuestionScreen> {
     );
   }
 
-  Future<void> showResultDialog() async {
-    await Future.delayed(const Duration(milliseconds: 300));
-    if (!mounted) return;
-
-    showDialog(
+  void showResultBottomSheet() {
+    showModalBottomSheet(
       context: context,
+      isDismissible: false,
+      backgroundColor:
+          isCorrect! ? AppColors.correctAnswer : AppColors.incorrectAnswer,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
       builder: (context) {
-        return AlertDialog(
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
+        final screenWidth = MediaQuery.of(context).size.width;
+        return Container(
+          padding: const EdgeInsets.all(16),
+          margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.25),
+          height: 205,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
                 isCorrect! ? Icons.check_circle : Icons.error,
                 size: 60,
-                color: isCorrect! ? Colors.green : Colors.red,
+                color: AppColors.tertiaryColor,
               ),
               const SizedBox(height: 16),
               Text(
-                isCorrect! ? 'Correcto' : 'Incorrecto',
-                style: TextStyle(
-                  fontSize: 18,
+                isCorrect! ? '¡Correcto!' : '¡Incorrecto!',
+                style: const TextStyle(
+                  fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: isCorrect! ? Colors.green : Colors.red,
+                  color: AppColors.tertiaryColor,
                 ),
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.tertiaryColor,
+                  foregroundColor: isCorrect! ? AppColors.correctAnswer : AppColors.incorrectAnswer,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop(); // Oculta el BottomSheet
+                  goToNextQuestion();
+                },
+                child: const Text('Continuar'),
               ),
             ],
           ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                //Navigator.of(context).pop();
-                context.pop();
-                goToNextQuestion();
-              },
-              child: const Text('Continuar'),
-            ),
-          ],
         );
       },
     );
