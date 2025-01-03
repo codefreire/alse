@@ -229,8 +229,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
       });
     } else {
       // Redirigir a la pantalla de puntaje
-      context.pushNamed(ScoreScreen.name);
-      //context.go(ScoreScreen.name, extra: score);
+      //context.pushNamed(ScoreScreen.name);
+      context.goNamed(ScoreScreen.name, extra: {'score': score, 'level': widget.level});
     }
   }
 }

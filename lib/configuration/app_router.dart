@@ -78,7 +78,11 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/score',
       name: ScoreScreen.name,
-      builder: (context, state) => const ScoreScreen(score: 60,),
+      builder: (context, state) {
+        final myExtra = state.extra as Map<String, dynamic>;
+        return ScoreScreen(extraData: myExtra);
+      }
+      //=> const ScoreScreen(score: 6,),
     ),
     GoRoute(
       path: '/profile',
