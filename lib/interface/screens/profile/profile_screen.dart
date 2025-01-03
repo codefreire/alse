@@ -4,6 +4,7 @@ import 'package:alse/interface/screens/profile/edit_profile_screen.dart';
 import 'package:alse/interface/screens/profile/help_screen.dart';
 import 'package:alse/interface/screens/profile/logout_screen.dart';
 import 'package:alse/interface/screens/profile/setting_screen.dart';
+import 'package:alse/interface/screens/profile/user_terms_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -91,6 +92,14 @@ class ProfileScreen extends StatelessWidget {
                     onTap: () {
                       // Acción para ayuda
                       context.pushNamed(HelpScreen.name);
+                    },
+                  ),
+                  OptionItem(
+                    icon: Icons.verified_user,
+                    label: 'Política de privacidad',
+                    onTap: () {
+                      // Acción para cerrar sesión
+                      context.pushNamed(UserTermsScreen.name);
                     },
                   ),
                   OptionItem(

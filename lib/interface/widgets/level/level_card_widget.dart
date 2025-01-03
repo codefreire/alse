@@ -75,34 +75,34 @@ class LevelCardWidget extends StatelessWidget {
                     maxLines: 5,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(height: 16),
+                  //const SizedBox(height: 16),
                   // Barra de progreso y porcentaje
-                  Row(
-                    children: [
-                      Expanded(
-                        child: LinearProgressIndicator(
-                          value: progreso / 100,
-                          backgroundColor: bloqueado
-                              ? Colors.grey[400]
-                              : Colors.grey[300],
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            bloqueado ? Colors.grey : AppColors.primaryColor,
-                          ),
-                        ),
-                      ),
-                      //const SizedBox(width: 8),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: Text(
-                          '${progreso.toInt()}% Completed',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: bloqueado ? Colors.grey : Colors.black,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   children: [
+                  //     Expanded(
+                  //       child: LinearProgressIndicator(
+                  //         value: progreso / 100,
+                  //         backgroundColor: bloqueado
+                  //             ? Colors.grey[400]
+                  //             : Colors.grey[300],
+                  //         valueColor: AlwaysStoppedAnimation<Color>(
+                  //           bloqueado ? Colors.grey : AppColors.primaryColor,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //     const SizedBox(width: 8),
+                  //     Padding(
+                  //       padding: const EdgeInsets.only(top: 20),
+                  //       child: Text(
+                  //         '${progreso.toInt()}% Completed',
+                  //         style: TextStyle(
+                  //           fontSize: 12,
+                  //           color: bloqueado ? Colors.grey : Colors.black,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),

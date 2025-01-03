@@ -1,88 +1,71 @@
 import 'package:alse/configuration/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 class LearningScreen extends StatelessWidget {
   static const name = 'learning-screen';
+  final Map<String, dynamic> extraData;
 
-  const LearningScreen({super.key});
+  const LearningScreen({super.key, required this.extraData});
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, String>> videos = [
-      {
-        'titulo': 'Manzana',
-        'videoId': 'sIlkYSvBjOo',
-      },
-      {
-        'titulo': 'Piña',
-        'videoId': 'sIfscd-u-3c',
-      },
-      {
-        'titulo': 'Banana',
-        'videoId': 'WOczt9uc39k',
-      },
-      {
-        'titulo': 'Mandarina',
-        'videoId': '6oYgduWl8Ak',
-      },
-      {
-        'titulo': 'Fresa',
-        'videoId': 'HABzhzcm_pg',
-      },
-    ];
+    // Obtén los datos del `extra` del estado actual de GoRouter.
+    //final Map<String, dynamic> args = GoRouter.of(context).extra as Map<String, dynamic>;
+
+    // Asegúrate de que los datos están presentes.
+    final String titulo = extraData['titulo'] ?? 'Sin título';
+    final List<Map<String, String>> elementos = extraData['elementos'] ?? [];
+    
     return Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.primaryColor,
+          title: Text(titulo, style: const TextStyle(color: AppColors.tertiaryColor),),
           iconTheme: const IconThemeData(
             color: AppColors.tertiaryColor,
           ),
         ),
         body: ListView.builder(
-          padding: const EdgeInsets.all(16),
-          itemCount: videos.length,
-          itemBuilder: (context, index) {
-            final video = videos[index];
-            return Column(
-              children: [
-                // Video Player
-                YoutubePlayerBuilder(
-                  player: YoutubePlayer(
-                    controller: YoutubePlayerController(
-                      initialVideoId: video['videoId']!,
-                      flags: const YoutubePlayerFlags(
-                        autoPlay: false,
-                        mute: false,
+        padding: const EdgeInsets.all(16),
+        itemCount: elementos.length,
+        itemBuilder: (context, index) {
+          final elemento = elementos[index];
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: ElevatedButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          YoutubePlayer(
+                            controller: YoutubePlayerController(
+                              initialVideoId: elemento['videoId']!,
+                              flags: const YoutubePlayerFlags(autoPlay: true),
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(elemento['titulo']!),
+                          const SizedBox(height: 8),
+                          IconButton(
+                            icon: const Icon(Icons.close),
+                            onPressed: () => Navigator.of(context).pop(),
+                          ),
+                        ],
                       ),
-                    ),
-                    showVideoProgressIndicator: true,
-                  ),
-                  builder: (context, player) => ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: player,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                // Texto debajo del video
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.secondaryColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  onPressed: () {
-                    //print('Botón presionado: ${video['titulo']}');
+                    );
                   },
-                  child: Text(
-                    video['titulo']!,
-                    style: const TextStyle(color: AppColors.tertiaryColor),
-                  ),
-                ),
-                const SizedBox(height: 16),
-              ],
-            );
-          },
-        ));
+                );
+              },
+              child: Text(elemento['titulo']!),
+            ),
+          );
+        },
+      ),
+    );
   }
 }

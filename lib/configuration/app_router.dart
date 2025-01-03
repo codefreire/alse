@@ -13,6 +13,7 @@ import 'package:alse/interface/screens/profile/help_screen.dart';
 import 'package:alse/interface/screens/profile/logout_screen.dart';
 import 'package:alse/interface/screens/profile/profile_screen.dart';
 import 'package:alse/interface/screens/profile/setting_screen.dart';
+import 'package:alse/interface/screens/profile/user_terms_screen.dart';
 import 'package:alse/interface/screens/test/test_screen.dart';
 import 'package:alse/interface/screens/test/test_two_screen.dart';
 import 'package:alse/interface/screens/test/test_video.dart';
@@ -54,7 +55,11 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/learning',
       name: LearningScreen.name,
-      builder: (context, state) => const LearningScreen(),
+      builder: (context, state) {
+        final myExtra = state.extra as Map<String, dynamic>;
+        return LearningScreen(extraData: myExtra);
+      } 
+      //=> const LearningScreen(),
     ),
     GoRoute(
       path: '/level',
@@ -110,6 +115,11 @@ final appRouter = GoRouter(
       path: '/testvideo',
       name: TestVideoScreen.name,
       builder: (context, state) => const TestVideoScreen(),
+    ),
+    GoRoute(
+      path: '/politicaprivacidad',
+      name: UserTermsScreen.name,
+      builder: (context, state) => const UserTermsScreen(),
     ),
   ],
 );
