@@ -1,5 +1,6 @@
 import 'package:alse/interface/screens/level/question_screen.dart';
 import 'package:alse/interface/widgets/level/level_card_widget.dart';
+import 'package:alse/interface/widgets/shared/custom_label_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -14,6 +15,14 @@ class LevelScreen extends StatelessWidget {
       body: Center(
           child: Column(
         children: [
+          const Padding(
+            padding: EdgeInsets.only(top: 20),
+            child: CustomLabelWidget(
+              text: 'Niveles',
+              fontSize: 40,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           Expanded(
               child: ListView(children: [
             GestureDetector(

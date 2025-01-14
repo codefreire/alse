@@ -30,13 +30,13 @@ class _QuestionScreenState extends State<QuestionScreen> {
       case 1:
         return [
           {'videoId': 'eF6orKu-Spo', 'options': ['H', 'E', 'D', 'A'], 'answer': 'E'},
-          {'videoId': 'eF6orKu-Spo', 'options': ['Amarillo', 'Rojo', 'Blanco', 'Verde'], 'answer': 'Amarillo'},
-          {'videoId': 'eF6orKu-Spo', 'options': ['Blanco', 'Negro', 'Naranja', 'Verde'], 'answer': 'Verde'},
+          {'videoId': '_glWgZCNmpg', 'options': ['Amarillo', 'Rojo', 'Blanco', 'Verde'], 'answer': 'Amarillo'},
+          {'videoId': 'QiTz_m_mmRg', 'options': ['Blanco', 'Negro', 'Naranja', 'Verde'], 'answer': 'Verde'},
           {'videoId': 'eF6orKu-Spo', 'options': ['L', 'O', 'Ñ', 'I'], 'answer': 'Ñ'},
           {'videoId': 'eF6orKu-Spo', 'options': ['C', 'S', 'F', 'K'], 'answer': 'C'},
-          {'videoId': 'eF6orKu-Spo', 'options': ['Morado', 'Amarillo', 'Azul', 'Naranja'], 'answer': 'Naranja'},
+          {'videoId': 'I1EwpjsSS-U', 'options': ['Morado', 'Amarillo', 'Azul', 'Naranja'], 'answer': 'Naranja'},
           {'videoId': 'eF6orKu-Spo', 'options': ['G', 'U', 'T', 'N'], 'answer': 'T'},
-          {'videoId': 'eF6orKu-Spo', 'options': ['Negro', 'Azul', 'Rojo', 'Morado'], 'answer': 'Azul'},
+          {'videoId': 'XLNqq5u8_gY', 'options': ['Negro', 'Azul', 'Rojo', 'Morado'], 'answer': 'Azul'},
         ];
       case 2:
         return [
@@ -45,7 +45,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
           {'videoId': 'eF6orKu-Spo', 'options': ['Librería', 'Biblioteca', 'Parqueadero', 'Baño'], 'answer': 'Biblioteca'},
           {'videoId': 'eF6orKu-Spo', 'options': ['Aula', 'Laboratorio', 'Cafetería', 'Dispensario Médico'], 'answer': 'Dispensario Médico'},
           {'videoId': 'eF6orKu-Spo', 'options': ['Limón', 'Guayaba', 'Maracuyá', 'Naranjilla'], 'answer': 'Naranjilla'},
-          {'videoId': 'eF6orKu-Spo', 'options': ['Laboratorio', 'Aula', 'Baño', 'Dispensario Médico'], 'answer': 'Baño'},
+          {'videoId': '-caoJrD6iC4', 'options': ['Laboratorio', 'Aula', 'Baño', 'Dispensario Médico'], 'answer': 'Baño'},
           {'videoId': 'eF6orKu-Spo', 'options': ['Maracuyá', 'Plátano', 'Limón', 'Mango'], 'answer': 'Maracuyá'},
           {'videoId': 'eF6orKu-Spo', 'options': ['Mora', 'Mango', 'Piña', 'Naranjilla'], 'answer': 'Mango'},
         ];

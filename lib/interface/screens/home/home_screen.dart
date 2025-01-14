@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     _videoController = YoutubePlayerController(
       initialVideoId: YoutubePlayer.convertUrlToId(
-        'https://www.youtube.com/watch?v=eF6orKu-Spo',
+        'https://youtu.be/kvvszbE9uFA',
       )!,
       flags: const YoutubePlayerFlags(
         autoPlay: false,
@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   alignment: Alignment.centerLeft,
                   child: CustomLabelWidget(
                     text: 'Hola ${context.watch<UserProfileProvider>().username}',
-                    fontSize: 20,
+                    fontSize: 40,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
