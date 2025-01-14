@@ -1,5 +1,6 @@
 import 'package:alse/interface/screens/learning/learning_screen.dart';
 import 'package:alse/interface/widgets/learning/card_learning_widget.dart';
+import 'package:alse/interface/widgets/shared/custom_label_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -13,7 +14,8 @@ class CategoryScreen extends StatelessWidget {
     final List<Map<String, dynamic>> cards = [
       {
         'titulo': 'Alfabeto',
-        'imagenUrl': 'https://imagedelivery.net/nv-bJhgmsJrHH2_eM9JJ0w/48060/public',
+        'imagenUrl':
+            'https://imagedelivery.net/nv-bJhgmsJrHH2_eM9JJ0w/48060/public',
         //'ruta': LearningScreen.name,
         'elementos': [
           {'titulo': 'A', 'videoId': 'eF6orKu-Spo'},
@@ -47,7 +49,8 @@ class CategoryScreen extends StatelessWidget {
       },
       {
         'titulo': 'Colores',
-        'imagenUrl': 'https://imagedelivery.net/nv-bJhgmsJrHH2_eM9JJ0w/48060/public',
+        'imagenUrl':
+            'https://imagedelivery.net/nv-bJhgmsJrHH2_eM9JJ0w/48060/public',
         //'imagenUrl': 'https://i.ytimg.com/vi/eJUXB3iFNLo/maxresdefault.jpg',
         //'ruta': LearningScreen.name,
         'elementos': [
@@ -63,7 +66,8 @@ class CategoryScreen extends StatelessWidget {
       },
       {
         'titulo': 'Frutas',
-        'imagenUrl': 'https://imagedelivery.net/nv-bJhgmsJrHH2_eM9JJ0w/48060/public',
+        'imagenUrl':
+            'https://imagedelivery.net/nv-bJhgmsJrHH2_eM9JJ0w/48060/public',
         //'imagenUrl': 'https://i.ytimg.com/vi/tNbbuCfOlvQ/maxresdefault.jpg',
         //'ruta': LearningScreen.name,
         'elementos': [
@@ -79,7 +83,8 @@ class CategoryScreen extends StatelessWidget {
       },
       {
         'titulo': 'Lugares de la universidad',
-        'imagenUrl': 'https://imagedelivery.net/nv-bJhgmsJrHH2_eM9JJ0w/48060/public',
+        'imagenUrl':
+            'https://imagedelivery.net/nv-bJhgmsJrHH2_eM9JJ0w/48060/public',
         //'imagenUrl': 'https://www.uartes.edu.ec/sitio/wp-content/uploads/2023/01/senas4-644x429.jpg',
         //'ruta': LearningScreen.name,
         'elementos': [
@@ -90,51 +95,79 @@ class CategoryScreen extends StatelessWidget {
           {'titulo': 'Librería', 'videoId': 'eF6orKu-Spo'},
           {'titulo': 'Laboratorio', 'videoId': 'eF6orKu-Spo'},
           {'titulo': 'Dispensario Médico', 'videoId': 'eF6orKu-Spo'},
-          {'titulo': 'Parqueadero', 'videoId': 'eF6orKu-Spo'},          
+          {'titulo': 'Parqueadero', 'videoId': 'eF6orKu-Spo'},
         ]
       },
       {
         'titulo': 'Frases de emergencia',
-        'imagenUrl': 'https://imagedelivery.net/nv-bJhgmsJrHH2_eM9JJ0w/48060/public',
+        'imagenUrl':
+            'https://imagedelivery.net/nv-bJhgmsJrHH2_eM9JJ0w/48060/public',
         //'imagenUrl': 'https://files.pucp.education/puntoedu/wp-content/uploads/2015/06/2015_06_MIGUEL-RODRIGUEZ015.jpg',
         //'ruta': LearningScreen.name,
         'elementos': [
           {'titulo': 'Hola, ¿Cómo te llamas?', 'videoId': 'eF6orKu-Spo'},
           {'titulo': '¿Te puedo ayudar con algo?', 'videoId': 'eF6orKu-Spo'},
-          {'titulo': '¿Dónde quieres ir? Te puedo mostrar el camino', 'videoId': 'eF6orKu-Spo'},
+          {
+            'titulo': '¿Dónde quieres ir? Te puedo mostrar el camino',
+            'videoId': 'eF6orKu-Spo'
+          },
           {'titulo': 'Gracias por tu ayuda', 'videoId': 'eF6orKu-Spo'},
           {'titulo': 'El baño está por allá', 'videoId': 'eF6orKu-Spo'},
           {'titulo': 'Mi nombre es', 'videoId': 'eF6orKu-Spo'},
-          {'titulo': 'La biblioteca está cerca de la entrada principal', 'videoId': 'eF6orKu-Spo'},
+          {
+            'titulo': 'La biblioteca está cerca de la entrada principal',
+            'videoId': 'eF6orKu-Spo'
+          },
           {'titulo': 'Si / No', 'videoId': 'eF6orKu-Spo'},
         ]
       },
     ];
     return Scaffold(
-      body: GridView.builder(
-        padding: const EdgeInsets.all(16),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
-          childAspectRatio: 4 / 4,
-        ),
-        itemCount: cards.length,
-        itemBuilder: (context, index) {
-          final card = cards[index];
-          return GestureDetector(
-            onTap: () {
-              context.pushNamed(
-                LearningScreen.name,
-                extra: {'titulo': card['titulo'], 'elementos': card['elementos']},
-              );
-            },
-            child: CardLearningWidget(
-              titulo: card['titulo']!,
-              imagenUrl: card['imagenUrl']!,
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            const Padding(
+            padding: EdgeInsets.only(top: 0),
+            child: CustomLabelWidget(
+              text: 'Categorías',
+              fontSize: 40,
+              fontWeight: FontWeight.bold,
             ),
-          );
-        },
+          ),
+            const SizedBox(height: 16),
+            Expanded(
+              child: GridView.builder(
+                //padding: const EdgeInsets.all(16),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 16,
+                  childAspectRatio: 4 / 4,
+                ),
+                itemCount: cards.length,
+                itemBuilder: (context, index) {
+                  final card = cards[index];
+                  return GestureDetector(
+                    onTap: () {
+                      context.pushNamed(
+                        LearningScreen.name,
+                        extra: {
+                          'titulo': card['titulo'],
+                          'elementos': card['elementos']
+                        },
+                      );
+                    },
+                    child: CardLearningWidget(
+                      titulo: card['titulo']!,
+                      imagenUrl: card['imagenUrl']!,
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

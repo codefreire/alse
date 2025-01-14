@@ -57,7 +57,7 @@ class _MainScreenState extends State<MainScreen> {
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.psychology),
+              icon: Icon(Icons.auto_stories),//import_contacts_outlined    auto_stories
               label: '',
             ),
             BottomNavigationBarItem(
