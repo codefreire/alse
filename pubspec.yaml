@@ -68,6 +68,11 @@ flutter:
     - assets/alse_logo.png
     - assets/google_icon.png
     - assets/alse_profile.png
+    - assets/alfabeto.jpg
+    - assets/colores.jpg
+    - assets/frutas.jpg
+    - assets/universidad.jpg
+    - assets/frases.jpg
     - assets/videos/videointro.mp4
     - assets/videos/intro.mp4
     - assets/videos/

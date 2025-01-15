@@ -21,7 +21,7 @@ class CategoryScreen extends StatelessWidget {
       {
         'titulo': 'Alfabeto',
         'imagenUrl':
-            'https://imagedelivery.net/nv-bJhgmsJrHH2_eM9JJ0w/48060/public',
+            'assets/alfabeto.jpg',
         //'ruta': LearningScreen.name,
         'elementos': [
           {'titulo': 'A', 'videoId': 'eF6orKu-Spo'},
@@ -56,7 +56,7 @@ class CategoryScreen extends StatelessWidget {
       {
         'titulo': 'Colores',
         'imagenUrl':
-            'https://imagedelivery.net/nv-bJhgmsJrHH2_eM9JJ0w/48060/public',
+            'assets/colores.jpg',
         //'imagenUrl': 'https://i.ytimg.com/vi/eJUXB3iFNLo/maxresdefault.jpg',
         //'ruta': LearningScreen.name,
         'elementos': [
@@ -73,7 +73,7 @@ class CategoryScreen extends StatelessWidget {
       {
         'titulo': 'Frutas',
         'imagenUrl':
-            'https://imagedelivery.net/nv-bJhgmsJrHH2_eM9JJ0w/48060/public',
+            'assets/frutas.jpg',
         //'imagenUrl': 'https://i.ytimg.com/vi/tNbbuCfOlvQ/maxresdefault.jpg',
         //'ruta': LearningScreen.name,
         'elementos': [
@@ -90,7 +90,7 @@ class CategoryScreen extends StatelessWidget {
       {
         'titulo': 'Lugares de la universidad',
         'imagenUrl':
-            'https://imagedelivery.net/nv-bJhgmsJrHH2_eM9JJ0w/48060/public',
+            'assets/universidad.jpg',
         //'imagenUrl': 'https://www.uartes.edu.ec/sitio/wp-content/uploads/2023/01/senas4-644x429.jpg',
         //'ruta': LearningScreen.name,
         'elementos': [
@@ -107,7 +107,7 @@ class CategoryScreen extends StatelessWidget {
       {
         'titulo': 'Frases de emergencia',
         'imagenUrl':
-            'https://imagedelivery.net/nv-bJhgmsJrHH2_eM9JJ0w/48060/public',
+            'assets/frases.jpg',
         //'imagenUrl': 'https://files.pucp.education/puntoedu/wp-content/uploads/2015/06/2015_06_MIGUEL-RODRIGUEZ015.jpg',
         //'ruta': LearningScreen.name,
         'elementos': [

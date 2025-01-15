@@ -27,7 +27,7 @@ class CardLearningWidget extends StatelessWidget {
           Expanded(
             child: ClipRRect(
               borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
-              child: Image.network(
+              child: Image.asset(
                 imagenUrl,
                 fit: BoxFit.cover,
                 width: double.infinity,
