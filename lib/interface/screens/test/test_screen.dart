@@ -1,11 +1,7 @@
-import 'package:alse/interface/screens/authentication/signin_screen.dart';
 import 'package:alse/interface/screens/test/test_two_screen.dart';
-import 'package:alse/interface/widgets/shared/custom_label_widget.dart';
-import 'package:alse/interface/widgets/shared/progress_bar_widget.dart';
 import 'package:alse/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class TestScreen extends StatefulWidget {
   static const name = 'test-screen';

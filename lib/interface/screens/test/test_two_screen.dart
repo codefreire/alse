@@ -1,4 +1,3 @@
-import 'package:alse/configuration/app_router.dart';
 import 'package:alse/interface/screens/home/main_screen.dart';
 import 'package:alse/services/auth_service.dart';
 import 'package:flutter/material.dart';

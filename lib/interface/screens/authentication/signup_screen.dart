@@ -1,9 +1,7 @@
 import 'package:alse/configuration/app_colors.dart';
 import 'package:alse/interface/screens/authentication/signin_screen.dart';
-import 'package:alse/interface/screens/home/main_screen.dart';
 import 'package:alse/interface/widgets/shared/custom_buttom_widget.dart';
 import 'package:alse/interface/widgets/shared/custom_label_widget.dart';
-import 'package:alse/interface/widgets/shared/custom_text_input_widget.dart';
 import 'package:alse/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
