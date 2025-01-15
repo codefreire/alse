@@ -49,7 +49,7 @@ dev_dependencies:
 
 flutter_native_splash:
   color: "#bceeff"
-  image: assets/alse_splash.png
+  image: assets/splash.png
   android: true
   ios: true
   fullscreen: true
