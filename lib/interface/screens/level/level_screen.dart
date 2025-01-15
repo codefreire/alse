@@ -37,7 +37,7 @@ class LevelScreen extends StatelessWidget {
                       '"Aprende el alfabeto, números, colores y saludos. Este nivel es fácil y te ayudará a familiarizarte con los gestos básicos para empezar a comunicarte."',
                   progreso: 79,
                   imagenUrl:
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ33DIDj1Qi10qUFUQUEjd_dULf3yNtq8KwOeLFVWXgfjtTUPjXsLAlTUBrnE7vjTrjcpw&usqp=CAU'),
+                      'assets/levelone.png'),
               //imagenUrl: 'https://img.freepik.com/foto-gratis/retrato-mujer-comunicarse-traves-lenguaje-senas_23-2148590355.jpg?w=360'),
             ),
             GestureDetector(
@@ -52,7 +52,7 @@ class LevelScreen extends StatelessWidget {
                     '"Domina frases comunes y vocabulario sobre lugares como la biblioteca o cafetería. Aquí aumentarás la complejidad combinando señas para formar oraciones sencillas."',
                 progreso: 79,
                 imagenUrl:
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ33DIDj1Qi10qUFUQUEjd_dULf3yNtq8KwOeLFVWXgfjtTUPjXsLAlTUBrnE7vjTrjcpw&usqp=CAU',
+                    'assets/leveltwo.png',
                 //bloqueado: true,
               ),
             ),
@@ -68,7 +68,7 @@ class LevelScreen extends StatelessWidget {
                     '"Desarrolla fluidez en conversaciones más complejas."',
                 progreso: 0,
                 imagenUrl:
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ33DIDj1Qi10qUFUQUEjd_dULf3yNtq8KwOeLFVWXgfjtTUPjXsLAlTUBrnE7vjTrjcpw&usqp=CAU',
+                    'assets/levelthree.png',
                 //imagenUrl: 'https://atmedios.com/pantallaaccesible/wp-content/uploads/2023/02/Blog-Sordos-570x291.jpg',
                 //bloqueado: true,
               ),

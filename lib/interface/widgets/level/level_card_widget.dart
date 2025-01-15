@@ -35,7 +35,7 @@ class LevelCardWidget extends StatelessWidget {
             // Imagen a la izquierda
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.network(
+              child: Image.asset(
                 imagenUrl,
                 width: 80,
                 height: 120,
