@@ -1,3 +1,4 @@
+import 'package:alse/configuration/app_colors.dart';
 import 'package:alse/interface/screens/learning/learning_screen.dart';
 import 'package:alse/interface/widgets/learning/card_learning_widget.dart';
 import 'package:alse/interface/widgets/shared/custom_label_widget.dart';
@@ -11,6 +12,11 @@ class CategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final borderColor = theme.brightness == Brightness.dark
+        ? Colors.white.withOpacity(0.5)
+        : AppColors.primaryColor;
+        
     final List<Map<String, dynamic>> cards = [
       {
         'titulo': 'Alfabeto',
@@ -88,14 +94,14 @@ class CategoryScreen extends StatelessWidget {
         //'imagenUrl': 'https://www.uartes.edu.ec/sitio/wp-content/uploads/2023/01/senas4-644x429.jpg',
         //'ruta': LearningScreen.name,
         'elementos': [
-          {'titulo': 'Biblioteca', 'videoId': 'eF6orKu-Spo'},
+          {'titulo': 'Biblioteca', 'videoId': 'T6pcVZzYEhM'},
           {'titulo': 'Aula', 'videoId': 'gNnukFz-OQs'},
-          {'titulo': 'Cafetería', 'videoId': 'eF6orKu-Spo'},
+          {'titulo': 'Cafetería', 'videoId': '6YYm7w3hG3A'},
           {'titulo': 'Baño', 'videoId': '-caoJrD6iC4'},
-          {'titulo': 'Librería', 'videoId': 'eF6orKu-Spo'},
-          {'titulo': 'Laboratorio', 'videoId': 'eF6orKu-Spo'},
-          {'titulo': 'Dispensario Médico', 'videoId': 'eF6orKu-Spo'},
-          {'titulo': 'Parqueadero', 'videoId': 'eF6orKu-Spo'},
+          {'titulo': 'Librería', 'videoId': 'hnVqdDCP_co'},
+          {'titulo': 'Laboratorio', 'videoId': 'WmQHQxgi2MM'},
+          {'titulo': 'Dispensario Médico', 'videoId': 'B_RTG-n4sDI'},
+          {'titulo': 'Parqueadero', 'videoId': 'VKJmq5Q9_SU'},
         ]
       },
       {
@@ -105,20 +111,20 @@ class CategoryScreen extends StatelessWidget {
         //'imagenUrl': 'https://files.pucp.education/puntoedu/wp-content/uploads/2015/06/2015_06_MIGUEL-RODRIGUEZ015.jpg',
         //'ruta': LearningScreen.name,
         'elementos': [
-          {'titulo': 'Hola, ¿Cómo te llamas?', 'videoId': 'eF6orKu-Spo'},
-          {'titulo': '¿Te puedo ayudar con algo?', 'videoId': 'eF6orKu-Spo'},
+          {'titulo': 'Hola, ¿Cómo te llamas?', 'videoId': 'SB3VjVLiwDQ'},
+          {'titulo': '¿Te puedo ayudar con algo?', 'videoId': 'Hm06Hj8NNMA'},
           {
             'titulo': '¿Dónde quieres ir? Te puedo mostrar el camino',
-            'videoId': 'eF6orKu-Spo'
+            'videoId': 'PIl38y1m9w4'
           },
-          {'titulo': 'Gracias por tu ayuda', 'videoId': 'eF6orKu-Spo'},
-          {'titulo': 'El baño está por allá', 'videoId': 'eF6orKu-Spo'},
-          {'titulo': 'Mi nombre es', 'videoId': 'eF6orKu-Spo'},
+          {'titulo': 'Gracias por tu ayuda', 'videoId': 'mFCAsI8MZIM'},
+          {'titulo': 'El baño está por allá', 'videoId': 'XERM92G1sI4'},
+          {'titulo': 'Mi nombre es', 'videoId': '6AyfB2Vkv3E'},
           {
             'titulo': 'La biblioteca está cerca de la entrada principal',
             'videoId': 'eF6orKu-Spo'
           },
-          {'titulo': 'Si / No', 'videoId': 'eF6orKu-Spo'},
+          {'titulo': 'Si / No', 'videoId': 'C2qaUWobFu0'},
         ]
       },
     ];
@@ -161,6 +167,7 @@ class CategoryScreen extends StatelessWidget {
                     child: CardLearningWidget(
                       titulo: card['titulo']!,
                       imagenUrl: card['imagenUrl']!,
+                      color: borderColor,
                     ),
                   );
                 },

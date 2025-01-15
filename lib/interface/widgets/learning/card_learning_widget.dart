@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class CardLearningWidget extends StatelessWidget {
   final String titulo;
   final String imagenUrl;
+  final Color color;
 
   const CardLearningWidget({
     super.key,
     required this.titulo,
     required this.imagenUrl,
+    required this.color,
   });
 
   @override
@@ -15,6 +17,9 @@ class CardLearningWidget extends StatelessWidget {
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
+        side: BorderSide(
+          color: color,
+        )
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

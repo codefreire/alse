@@ -1,7 +1,6 @@
 import 'package:alse/configuration/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-import 'package:go_router/go_router.dart';
 
 class LearningScreen extends StatelessWidget {
   static const name = 'learning-screen';
@@ -41,7 +40,7 @@ class LearningScreen extends StatelessWidget {
             crossAxisCount: 3,
             crossAxisSpacing: 16,
             mainAxisSpacing: 16,
-            childAspectRatio: 3 / 2
+            childAspectRatio: 2 / 3.5,
           ),
           itemBuilder: (context, index) {
             final elemento = elementos[index];
@@ -81,7 +80,10 @@ class LearningScreen extends StatelessWidget {
                   },
                 );
               },
-              child: Text(elemento['titulo']!, style: TextStyle(color: textColor),),
+              child: Text(
+                elemento['titulo']!,
+                style: TextStyle(color: textColor),
+              ),
             );
           }
         )   
