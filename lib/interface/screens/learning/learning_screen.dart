@@ -17,7 +17,6 @@ class LearningScreen extends StatelessWidget {
     // Asegúrate de que los datos están presentes.
     final String titulo = extraData['titulo'] ?? 'Sin título';
     final List<Map<String, String>> elementos = extraData['elementos'] ?? [];
-    final isFrasesEmergencia = titulo == 'Frases de emergencia';
 
     final theme = Theme.of(context);
     final borderColor = theme.brightness == Brightness.dark
@@ -35,14 +34,18 @@ class LearningScreen extends StatelessWidget {
             color: AppColors.tertiaryColor,
           ),
         ),
-        body: ListView.builder(
-        padding: const EdgeInsets.all(16),
-        itemCount: elementos.length,
-        itemBuilder: (context, index) {
-          final elemento = elementos[index];
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: ElevatedButton(
+        body: GridView.builder(
+          padding: const EdgeInsets.all(16),
+          itemCount: elementos.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            crossAxisSpacing: 16,
+            mainAxisSpacing: 16,
+            childAspectRatio: 3 / 2
+          ),
+          itemBuilder: (context, index) {
+            final elemento = elementos[index];
+            return ElevatedButton(
               style: ButtonStyle(
                 shape: WidgetStateProperty.all(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
@@ -79,10 +82,9 @@ class LearningScreen extends StatelessWidget {
                 );
               },
               child: Text(elemento['titulo']!, style: TextStyle(color: textColor),),
-            ),
-          );
-        },
-      ),
+            );
+          }
+        )   
     );
   }
 }
