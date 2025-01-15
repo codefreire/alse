@@ -35,6 +35,17 @@ class _CustomTextInputWidgetState extends State<CustomTextInputWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textColor = theme.brightness == Brightness.dark
+        ? AppColors.tertiaryColor
+        : AppColors.primaryColor;
+    final borderColor = theme.brightness == Brightness.dark
+        ? Colors.white.withOpacity(0.5)
+        : AppColors.primaryColor;
+    final hintColor = theme.brightness == Brightness.dark
+        ? Colors.white.withOpacity(0.7)
+        : AppColors.primaryColor;
+
     return Form(
       key: _formKey,
       child: Column(
@@ -42,10 +53,10 @@ class _CustomTextInputWidgetState extends State<CustomTextInputWidget> {
         children: [
           Text(
             widget.label,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 14.0,
               fontWeight: FontWeight.normal,
-              color: AppColors.primaryColor,
+              color: textColor,
             ),
           ),
           const SizedBox(height: 4),
@@ -57,29 +68,29 @@ class _CustomTextInputWidgetState extends State<CustomTextInputWidget> {
                 : TextInputType.emailAddress,
             decoration: InputDecoration(
               hintText: widget.placeholder,
-              hintStyle: const TextStyle(
+              hintStyle: TextStyle(
                 fontWeight: FontWeight.normal,
-                color: AppColors.primaryColor,
+                color: hintColor,
                 fontSize: 12,
               ),
               contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.0),
-                borderSide: const BorderSide(color: AppColors.primaryColor),
+                borderSide: BorderSide(color: borderColor),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.0),
-                borderSide: const BorderSide(color: AppColors.primaryColor),
+                borderSide: BorderSide(color: borderColor),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.0),
-                borderSide: const BorderSide(color: AppColors.primaryColor),
+                borderSide: BorderSide(color: borderColor),
               ),
               suffixIcon: widget.isPassword
                   ? IconButton(
                       icon: Icon(
                         _obscureText ? Icons.visibility_off : Icons.visibility,
-                        color: AppColors.primaryColor,
+                        color: borderColor,
                       ),
                       onPressed: () {
                         setState(() {

@@ -42,7 +42,20 @@ class MyApp extends StatelessWidget {
               colorSchemeSeed: AppColors.primaryColor,
               useMaterial3: true,
             ),
-            darkTheme: ThemeData.dark(),
+            darkTheme: ThemeData(
+              //brightness: Brightness.dark,
+              colorScheme: const ColorScheme.dark(
+                primary: AppColors.primaryColor,
+                onPrimary: AppColors.tertiaryColor,
+                surface: Color.fromARGB(255, 33, 31, 31),
+                onSurface: AppColors.tertiaryColor,
+              ),
+              textTheme: const TextTheme(
+                bodyLarge: TextStyle(color: AppColors.tertiaryColor),
+                bodyMedium: TextStyle(color: AppColors.tertiaryColor),
+                bodySmall: TextStyle(color: AppColors.tertiaryColor),
+              ),
+            ),
             themeMode:
                 themeNotifier.isDarkMode ? ThemeMode.dark : ThemeMode.light,
           );

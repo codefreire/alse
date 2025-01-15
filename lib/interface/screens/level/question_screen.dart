@@ -75,6 +75,14 @@ class _QuestionScreenState extends State<QuestionScreen> {
     final screenWidth = MediaQuery.of(context).size.width;
     final currentQuestion = questions[currentQuestionIndex];
 
+    final theme = Theme.of(context);
+    final hintColor = theme.brightness == Brightness.dark
+        ? Colors.white.withOpacity(0.7)
+        : AppColors.primaryColor;
+    final borderColor = theme.brightness == Brightness.dark
+        ? Colors.white.withOpacity(0.5)
+        : AppColors.primaryColor;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
@@ -142,6 +150,9 @@ class _QuestionScreenState extends State<QuestionScreen> {
                     elevation: WidgetStateProperty.all(2),
                     shape: WidgetStateProperty.all(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
+                      side: BorderSide(
+                        color: borderColor
+                      )
                     )),
                   ),
                   onPressed: () {
@@ -154,7 +165,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                     });
                     showResultBottomSheet();
                   },
-                  child: Text(option),
+                  child: Text(option, style: TextStyle(color: hintColor),),
                 );
               },
             ),

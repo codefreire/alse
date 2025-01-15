@@ -16,6 +16,11 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textColor = theme.brightness == Brightness.dark
+        ? AppColors.tertiaryColor
+        : AppColors.primaryColor;
+
     return FutureBuilder(
       future: context.read<UserProfileProvider>().loadUserProfile(), // Esperar que el perfil se cargue
       builder: (context, snapshot) {
@@ -53,10 +58,10 @@ class ProfileScreen extends StatelessWidget {
                           children: [
                             Text(
                               username,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                color: AppColors.primaryColor,
+                                color: textColor,
                               ),
                             ),
                           ],
@@ -77,6 +82,7 @@ class ProfileScreen extends StatelessWidget {
                       // Acción para editar el perfil
                       context.pushNamed(EditProfileScreen.name);
                     },
+                    color: textColor,
                   ),
                   OptionItem(
                     icon: Icons.settings,
@@ -85,6 +91,7 @@ class ProfileScreen extends StatelessWidget {
                       // Acción para ajustes
                       context.pushNamed(SettingScreen.name);
                     },
+                    color: textColor,
                   ),
                   OptionItem(
                     icon: Icons.help,
@@ -93,6 +100,7 @@ class ProfileScreen extends StatelessWidget {
                       // Acción para ayuda
                       context.pushNamed(HelpScreen.name);
                     },
+                    color: textColor,
                   ),
                   OptionItem(
                     icon: Icons.verified_user,
@@ -101,6 +109,7 @@ class ProfileScreen extends StatelessWidget {
                       // Acción para cerrar sesión
                       context.pushNamed(UserTermsScreen.name);
                     },
+                    color: textColor,
                   ),
                   OptionItem(
                     icon: Icons.logout,
@@ -109,6 +118,7 @@ class ProfileScreen extends StatelessWidget {
                       // Acción para cerrar sesión
                       context.pushNamed(LogoutScreen.name);
                     },
+                    color: textColor,
                   ),
                 ],
               ),
@@ -124,12 +134,14 @@ class OptionItem extends StatelessWidget {
   final IconData icon;
   final String label;
   final VoidCallback onTap;
+  final Color color;
 
   const OptionItem({
     super.key,
     required this.icon,
     required this.label,
     required this.onTap,
+    required this.color,
   });
 
   @override
@@ -155,10 +167,10 @@ class OptionItem extends StatelessWidget {
             const SizedBox(width: 16),
             Text(
               label,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color: AppColors.primaryColor,
+                color: color,
               ),
             ),
           ],

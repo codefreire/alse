@@ -124,6 +124,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     //final fullnameController = TextEditingController();
     //final emailController = TextEditingController();
+    final theme = Theme.of(context);
+    final textColor = theme.brightness == Brightness.dark
+        ? AppColors.tertiaryColor
+        : AppColors.primaryColor;
 
     return Scaffold(
       appBar: AppBar(
@@ -170,10 +174,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             const SizedBox(height: 16),
             Text(
               context.watch<UserProfileProvider>().username,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: AppColors.primaryColor,
+                color: textColor,
               ),
             ),
             // const SizedBox(height: 4),

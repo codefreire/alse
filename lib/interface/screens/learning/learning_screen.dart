@@ -17,7 +17,16 @@ class LearningScreen extends StatelessWidget {
     // Asegúrate de que los datos están presentes.
     final String titulo = extraData['titulo'] ?? 'Sin título';
     final List<Map<String, String>> elementos = extraData['elementos'] ?? [];
-    
+    final isFrasesEmergencia = titulo == 'Frases de emergencia';
+
+    final theme = Theme.of(context);
+    final borderColor = theme.brightness == Brightness.dark
+        ? Colors.white.withOpacity(0.5)
+        : AppColors.primaryColor;
+    final textColor = theme.brightness == Brightness.dark
+        ? AppColors.tertiaryColor
+        : AppColors.primaryColor;
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.primaryColor,
@@ -34,6 +43,14 @@ class LearningScreen extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: ElevatedButton(
+              style: ButtonStyle(
+                shape: WidgetStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                      side: BorderSide(
+                        color: borderColor
+                      )
+                    )),
+              ),
               onPressed: () {
                 showDialog(
                   context: context,
@@ -61,7 +78,7 @@ class LearningScreen extends StatelessWidget {
                   },
                 );
               },
-              child: Text(elemento['titulo']!),
+              child: Text(elemento['titulo']!, style: TextStyle(color: textColor),),
             ),
           );
         },

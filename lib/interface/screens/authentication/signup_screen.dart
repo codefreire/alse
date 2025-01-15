@@ -70,6 +70,14 @@ class _SignupScreenState extends State<SignupScreen> {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
+    final theme = Theme.of(context);
+    final borderColor = theme.brightness == Brightness.dark
+        ? Colors.white.withOpacity(0.5)
+        : AppColors.primaryColor;
+    final hintColor = theme.brightness == Brightness.dark
+        ? Colors.white.withOpacity(0.7)
+        : AppColors.primaryColor;
+
     //final emailController = TextEditingController();
     //final passwordController = TextEditingController();
     //final fullnameController = TextEditingController();
@@ -194,17 +202,17 @@ class _SignupScreenState extends State<SignupScreen> {
                       decoration: InputDecoration(
                         labelText: 'Correo aquí',
                         hintText: 'Ingrese su email',
-                        labelStyle: const TextStyle(
+                        labelStyle: TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.normal,
-                          color: AppColors.primaryColor,
+                          color: hintColor,
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: AppColors.primaryColor,
+                          borderSide: BorderSide(
+                            color: borderColor,
                             width: 1,
                           ),
                           borderRadius: BorderRadius.circular(10),
@@ -225,17 +233,17 @@ class _SignupScreenState extends State<SignupScreen> {
                       decoration: InputDecoration(
                         labelText: 'Contraseña',
                         hintText: 'Ingrese su contraseña',
-                        labelStyle: const TextStyle(
+                        labelStyle: TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.normal,
-                          color: AppColors.primaryColor,
+                          color: hintColor,
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: AppColors.primaryColor,
+                          borderSide: BorderSide(
+                            color: borderColor,
                             width: 1,
                           ),
                           borderRadius: BorderRadius.circular(10),
@@ -257,17 +265,17 @@ class _SignupScreenState extends State<SignupScreen> {
                       decoration: InputDecoration(
                         labelText: 'Confirmar contraseña',
                         hintText: 'Confirme su contraseña',
-                        labelStyle: const TextStyle(
+                        labelStyle: TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.normal,
-                          color: AppColors.primaryColor,
+                          color: hintColor,
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: AppColors.primaryColor,
+                          borderSide: BorderSide(
+                            color: borderColor,
                             width: 1,
                           ),
                           borderRadius: BorderRadius.circular(10),

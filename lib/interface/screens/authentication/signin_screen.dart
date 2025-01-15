@@ -52,6 +52,10 @@ class _SigninScreenState extends State<SigninScreen> {
     await showDialog(
       context: context,
       builder: (context) {
+            final theme = Theme.of(context);
+    final textColor = theme.brightness == Brightness.dark
+        ? AppColors.tertiaryColor
+        : AppColors.primaryColor;
         return StatefulBuilder(
           builder: (context, setState) {
             return AlertDialog(
@@ -79,7 +83,7 @@ class _SigninScreenState extends State<SigninScreen> {
                   onPressed: () {
                     Navigator.of(context).pop(); // Cierra el modal
                   },
-                  child: const Text('Cancelar'),
+                  child: Text('Cancelar', style: TextStyle(color: textColor),),
                 ),
                 TextButton(
                   onPressed: isLoading
@@ -110,7 +114,7 @@ class _SigninScreenState extends State<SigninScreen> {
                             );
                           }
                         },
-                  child: const Text('Enviar'),
+                  child: Text('Enviar', style: TextStyle(color: textColor),),
                 ),
               ],
             );

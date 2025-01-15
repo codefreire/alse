@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 class CustomLabelWidget extends StatelessWidget {
   final String text;
-  final Color color;
+  final Color? color;
   final double fontSize;
   final FontWeight fontWeight;
   final int maxLines;
@@ -15,7 +15,7 @@ class CustomLabelWidget extends StatelessWidget {
   const CustomLabelWidget({
     super.key,
     required this.text,
-    this.color = AppColors.primaryColor,
+    this.color,
     this.fontSize = 14,
     this.fontWeight = FontWeight.normal,
     this.maxLines = 1,
@@ -26,13 +26,14 @@ class CustomLabelWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final effectiveColor = color ?? Theme.of(context).textTheme.bodyLarge?.color;
     if (isLink && routeName != null) {
       return GestureDetector(
         onTap: () => {context.pushNamed(routeName!)},
         child: Text(
           text,
           style: TextStyle(
-            color: color,
+            color: effectiveColor,
             fontSize: fontSize,
             fontWeight: fontWeight,
             decoration: TextDecoration.underline,
@@ -45,7 +46,7 @@ class CustomLabelWidget extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-        color: color,
+        color: effectiveColor,
         fontSize: fontSize,
         fontWeight: fontWeight,
       ),
