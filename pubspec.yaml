@@ -81,6 +81,9 @@ flutter:
     - assets/videos/intro.mp4
     - assets/videos/
     - assets/images/
+    - assets/alse_splash.png
+    - assets/splash.png
+    - assets/newiconalse.png
     - assets/
 
   #   - images/a_dot_ham.jpeg
