@@ -17,12 +17,36 @@ class QuestionScreen extends StatefulWidget {
 
 class _QuestionScreenState extends State<QuestionScreen> {
   late List<Map<String, dynamic>> questions;
+  late YoutubePlayerController _youtubePlayerController;
 
   @override
   void initState() {
     super.initState();
     // Seleccionar preguntas según el nivel
     questions = _getQuestionsByLevel(widget.level);
+
+    // Inicializar el controlador con el primer video
+    _youtubePlayerController = YoutubePlayerController(
+      initialVideoId: questions.first['videoId'],
+      flags: const YoutubePlayerFlags(
+        autoPlay: false,
+        mute: false,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    // Liberar el controlador cuando no sea necesario
+    _youtubePlayerController.dispose();
+    super.dispose();
+  }
+
+  void _updateVideoController(String videoId) {
+    // Actualizar el video actual
+//    setState(() {
+      _youtubePlayerController.load(videoId);
+//    });
   }
 
   List<Map<String, dynamic>> _getQuestionsByLevel(int level) {
@@ -117,13 +141,13 @@ class _QuestionScreenState extends State<QuestionScreen> {
             padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
             child: YoutubePlayerBuilder(
               player: YoutubePlayer(
-                controller: YoutubePlayerController(
-                  initialVideoId: currentQuestion['videoId'],
-                  flags: const YoutubePlayerFlags(
-                    autoPlay: false,
-                    mute: false,
-                  ),
-                ),
+                controller: _youtubePlayerController,//(
+                  //initialVideoId: currentQuestion['videoId'],
+                  //flags: const YoutubePlayerFlags(
+                    //autoPlay: false,
+                    //mute: false,
+                  //),
+                //),
                 showVideoProgressIndicator: true,
               ),
               builder: (context, player) => ClipRRect(
@@ -214,16 +238,37 @@ class _QuestionScreenState extends State<QuestionScreen> {
                   foregroundColor: isCorrect!
                       ? AppColors.correctAnswer
                       : AppColors.incorrectAnswer,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
                 ),
                 onPressed: () {
-                  Navigator.of(context).pop(); // Oculta el BottomSheet
-                  goToNextQuestion();
+                  Navigator.pop(context);
+                  setState(() {
+                    if (currentQuestionIndex < questions.length - 1) {
+                      currentQuestionIndex++;
+                      _updateVideoController(
+                          questions[currentQuestionIndex]['videoId']);
+                    } else {
+                      context.goNamed(ScoreScreen.name, extra: {'score': score, 'level': widget.level});
+                    }
+                  });
                 },
-                child: const Text('Continuar'),
+                child: const Text('Siguiente'),
               ),
+              // ElevatedButton(
+              //   style: ElevatedButton.styleFrom(
+              //     backgroundColor: AppColors.tertiaryColor,
+              //     foregroundColor: isCorrect!
+              //         ? AppColors.correctAnswer
+              //         : AppColors.incorrectAnswer,
+              //     shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(12),
+              //     ),
+              //   ),
+              //   onPressed: () {
+              //     Navigator.of(context).pop(); // Oculta el BottomSheet
+              //     goToNextQuestion();
+              //   },
+              //   child: const Text('Continuar'),
+              // ),
             ],
           ),
         );
@@ -231,17 +276,20 @@ class _QuestionScreenState extends State<QuestionScreen> {
     );
   }
 
-  void goToNextQuestion() {
-    if (currentQuestionIndex < questions.length - 1) {
-      setState(() {
-        currentQuestionIndex++;
-        selectedAnswer = null;
-        isCorrect = null;
-      });
-    } else {
-      // Redirigir a la pantalla de puntaje
-      //context.pushNamed(ScoreScreen.name);
-      context.goNamed(ScoreScreen.name, extra: {'score': score, 'level': widget.level});
-    }
-  }
+  // void goToNextQuestion() {
+  //   setState(() {
+  //   if (currentQuestionIndex < questions.length - 1) {
+      
+  //       currentQuestionIndex++;
+        
+  //       selectedAnswer = null;
+  //       isCorrect = null;
+      
+  //   } else {
+  //     // Redirigir a la pantalla de puntaje
+  //     //context.pushNamed(ScoreScreen.name);
+  //     context.goNamed(ScoreScreen.name, extra: {'score': score, 'level': widget.level});
+  //   }
+  //   });
+  // }
 }
