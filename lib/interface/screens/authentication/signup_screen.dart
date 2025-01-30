@@ -76,47 +76,6 @@ class _SignupScreenState extends State<SignupScreen> {
         ? Colors.white.withOpacity(0.7)
         : AppColors.primaryColor;
 
-    //final emailController = TextEditingController();
-    //final passwordController = TextEditingController();
-    //final fullnameController = TextEditingController();
-    //final confirmPasswordController = TextEditingController();
-
-    //   Future<void> _register() async {
-    //   if (_formKey.currentState!.validate()) {
-    //     setState(() {
-    //       _isLoading = true;
-    //     });
-
-    //     final errorMessage = await _authService.register(
-    //       _emailController.text,
-    //       _passwordController.text,
-    //       _confirmPasswordController.text,
-    //     );
-
-    //     setState(() {
-    //       _isLoading = false;
-    //     });
-
-    //     if (errorMessage == null) {
-    //       context.goNamed(SigninScreen.name);
-    //       ScaffoldMessenger.of(context).showSnackBar(
-    //         const SnackBar(content: Text('Registro exitoso. Inicia sesión.')),
-    //       );
-    //     } else {
-    //       ScaffoldMessenger.of(context)
-    //           .showSnackBar(SnackBar(content: Text(errorMessage)));
-    //     }
-    //   }
-    // }
-
-    // @override
-    // void dispose() {
-    //   _emailController.dispose();
-    //   _passwordController.dispose();
-    //   _confirmPasswordController.dispose();
-    //   super.dispose();
-    // }
-
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -146,51 +105,6 @@ class _SignupScreenState extends State<SignupScreen> {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  // Column(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: [
-                  //     TextFormField(
-                  //       controller: _emailController,
-                  //       decoration: const InputDecoration(labelText: 'Email'),
-                  //       validator: (value) =>
-                  //       value == null || value.isEmpty ? 'Ingresa tu email' : null,
-                  //     ),
-                  //     const SizedBox(height: 20),
-                  //     TextFormField(
-                  //       controller: _passwordController,
-                  //       decoration: const InputDecoration(labelText: 'Password'),
-                  //       obscureText: true,
-                  //       validator: (value) =>
-                  //       value == null || value.isEmpty ? 'Ingresa tu contraseña' : null,
-                  //     ),
-                  //     const SizedBox(height: 20),
-                  //     TextFormField(
-                  //       controller: _confirmPasswordController,
-                  //       decoration: const InputDecoration(labelText: 'Confirm Password'),
-                  //       obscureText: true,
-                  //       validator: (value) =>
-                  //       value == null || value.isEmpty ? 'Confirma tu contraseña' : null,
-                  //     ),
-                  //     const SizedBox(height: 30),
-                  //    _isLoading
-                  //       ? const CircularProgressIndicator()
-                  //       : ElevatedButton(
-                  //         onPressed: _register,
-                  //         child: const Text('Registrar'),
-                  //     ),
-                  //   ],
-                  // )
-                  //  Container(
-                  //    height: screenHeight * (2 / 17),
-                  //    margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
-                  //    padding:
-                  //        EdgeInsets.only(top: (screenHeight * (2 / 17)) * 0.15),
-                  //    child: CustomTextInputWidget(
-                  //        label: 'Nombre',
-                  //        placeholder: 'Ingrese su nombre completo',
-                  //       controller: fullnameController),
-                  //  ),
-
                   Container(
                     height: screenHeight * (2 / 17),
                     margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),

@@ -8,7 +8,6 @@ import 'package:go_router/go_router.dart';
 
 class ScoreScreen extends StatelessWidget {
   static const name = 'score-screen';
-  //final int score;
   
   final Map<String, dynamic> extraData;
   const ScoreScreen({super.key, required this.extraData});
@@ -16,7 +15,7 @@ class ScoreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    const totalQuestions = 8; // Cambia según la cantidad de preguntas
+    const totalQuestions = 8;
 
     return Scaffold(
       body: Center(

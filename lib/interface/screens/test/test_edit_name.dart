@@ -23,7 +23,6 @@ class ProfileScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 40),
-            // Avatar e información del usuario
             Row(
               children: [
                 CircleAvatar(
@@ -47,31 +46,20 @@ class ProfileScreen extends StatelessWidget {
                           color: AppColors.primaryColor,
                         ),
                       ),
-                      // SizedBox(height: 4),
-                      // Text(
-                      //   'youremail@gmail.com',
-                      //   style: TextStyle(
-                      //     fontSize: 14,
-                      //     color: Colors.grey,
-                      //   ),
-                      // ),
                     ],
                   ),
                 ),
               ],
             ),
-
             const Divider(
               height: 40,
               thickness: 1,
               color: Colors.grey,
             ),
-            // Opciones de la lista
             OptionItem(
               icon: Icons.person,
               label: 'Edit Profile',
               onTap: () {
-                // Acción para editar el perfil
                 context.pushNamed(EditProfileScreen.name);
               },
             ),
@@ -79,7 +67,6 @@ class ProfileScreen extends StatelessWidget {
               icon: Icons.settings,
               label: 'Setting',
               onTap: () {
-                // Acción para ajustes
                 context.pushNamed(SettingScreen.name);
               },
             ),
@@ -87,7 +74,6 @@ class ProfileScreen extends StatelessWidget {
               icon: Icons.help,
               label: 'Help',
               onTap: () {
-                // Acción para ayuda
                 context.pushNamed(HelpScreen.name);
               },
             ),
@@ -95,7 +81,6 @@ class ProfileScreen extends StatelessWidget {
               icon: Icons.logout,
               label: 'Logout',
               onTap: () {
-                // Acción para cerrar sesión
                 context.pushNamed(LogoutScreen.name);
               },
             ),
@@ -129,8 +114,7 @@ class OptionItem extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: AppColors
-                    .secondaryColor, // Cambia este color si es necesario
+                color: AppColors.secondaryColor,
                 borderRadius: BorderRadius.circular(19),
               ),
               child: Icon(

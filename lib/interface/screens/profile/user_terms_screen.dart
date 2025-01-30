@@ -21,7 +21,9 @@ class UserTermsScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 15,),
+              const SizedBox(
+                height: 15,
+              ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
                 alignment: Alignment.centerLeft,
@@ -36,11 +38,14 @@ class UserTermsScreen extends StatelessWidget {
                 margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
                 alignment: Alignment.centerLeft,
                 child: const CustomLabelWidget(
-                  text: 'Esta aplicación ha sido desarrollada como parte de un proyecto universitario y está dirigida especialmente a estudiantes para enseñarles lenguaje de señas mediante videos básicos y lecciones interactivas. Su objetivo es facilitar el aprendizaje y fomentar una comunicación más inclusiva en el entorno universitario.',
+                  text:
+                      'Esta aplicación ha sido desarrollada como parte de un proyecto universitario y está dirigida especialmente a estudiantes para enseñarles lenguaje de señas mediante videos básicos y lecciones interactivas. Su objetivo es facilitar el aprendizaje y fomentar una comunicación más inclusiva en el entorno universitario.',
                   maxLines: 20,
                 ),
               ),
-              const SizedBox(height: 15,),
+              const SizedBox(
+                height: 15,
+              ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
                 alignment: Alignment.centerLeft,
@@ -54,11 +59,14 @@ class UserTermsScreen extends StatelessWidget {
                 margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
                 alignment: Alignment.centerLeft,
                 child: const CustomLabelWidget(
-                  text: 'Este proyecto ha sido creado por Ezequiel Jerez como un aporte educativo. Si tienes preguntas, sugerencias o necesitas soporte técnico, no dudes en contactarme.',
+                  text:
+                      'Este proyecto ha sido creado por Ezequiel Jerez como un aporte educativo. Si tienes preguntas, sugerencias o necesitas soporte técnico, no dudes en contactarme.',
                   maxLines: 20,
                 ),
               ),
-              const SizedBox(height: 15,),
+              const SizedBox(
+                height: 15,
+              ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
                 alignment: Alignment.centerLeft,
@@ -69,8 +77,9 @@ class UserTermsScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              
-              const SizedBox(height: 15,),
+              const SizedBox(
+                height: 15,
+              ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
                 alignment: Alignment.centerLeft,
@@ -81,7 +90,9 @@ class UserTermsScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 15,),
+              const SizedBox(
+                height: 15,
+              ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
                 alignment: Alignment.centerLeft,
@@ -95,34 +106,44 @@ class UserTermsScreen extends StatelessWidget {
                 margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
                 alignment: Alignment.centerLeft,
                 child: const CustomLabelWidget(
-                  text: 'El contenido de esta aplicación está diseñado exclusivamente para fines educativos y dirigido a estudiantes universitarios.',
+                  text:
+                      'El contenido de esta aplicación está diseñado exclusivamente para fines educativos y dirigido a estudiantes universitarios.',
                   maxLines: 20,
                 ),
               ),
-              const SizedBox(height: 15,),
+              const SizedBox(
+                height: 15,
+              ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
                 alignment: Alignment.centerLeft,
                 child: const CustomLabelWidget(
-                  text: 'Los materiales, incluidos vídeos, gráficos y texto, son propiedad intelectual de su desarrollador y están protegidos por derechos de autor.',
+                  text:
+                      'Los materiales, incluidos vídeos, gráficos y texto, son propiedad intelectual de su desarrollador y están protegidos por derechos de autor.',
                   maxLines: 20,
                 ),
               ),
-              const SizedBox(height: 15,),
+              const SizedBox(
+                height: 15,
+              ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
                 alignment: Alignment.centerLeft,
                 child: const CustomLabelWidget(
-                  text: 'Al utilizar la aplicación, aceptas estos términos y te comprometes a respetar la propiedad intelectual del proyecto.',
+                  text:
+                      'Al utilizar la aplicación, aceptas estos términos y te comprometes a respetar la propiedad intelectual del proyecto.',
                   maxLines: 20,
                 ),
               ),
-              const SizedBox(height: 15,),
+              const SizedBox(
+                height: 15,
+              ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
                 alignment: Alignment.centerLeft,
                 child: const CustomLabelWidget(
-                  text: 'Gracias por usar esta aplicación y contribuir a un entorno más inclusivo en la universidad.',
+                  text:
+                      'Gracias por usar esta aplicación y contribuir a un entorno más inclusivo en la universidad.',
                   maxLines: 20,
                 ),
               ),

@@ -22,15 +22,15 @@ class ProfileScreen extends StatelessWidget {
         : AppColors.primaryColor;
 
     return FutureBuilder(
-      future: context.read<UserProfileProvider>().loadUserProfile(), // Esperar que el perfil se cargue
+      future: context.read<UserProfileProvider>().loadUserProfile(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          // Mientras esperamos, mostramos un cargando o similar
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else {
-          final profileImage = context.watch<UserProfileProvider>().profileImage;
+          final profileImage =
+              context.watch<UserProfileProvider>().profileImage;
           final username = context.watch<UserProfileProvider>().username;
 
           return Scaffold(
@@ -40,7 +40,6 @@ class ProfileScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 40),
-                  // Avatar e información del usuario
                   Row(
                     children: [
                       CircleAvatar(
@@ -48,7 +47,7 @@ class ProfileScreen extends StatelessWidget {
                         backgroundImage: profileImage != null
                             ? FileImage(profileImage)
                             : const AssetImage('assets/alse_profile.png')
-                                as ImageProvider, // Imagen predeterminada
+                                as ImageProvider,
                       ),
                       const SizedBox(height: 16),
                       Padding(
@@ -74,12 +73,10 @@ class ProfileScreen extends StatelessWidget {
                     thickness: 1,
                     color: Colors.grey,
                   ),
-                  // Opciones de la lista
                   OptionItem(
                     icon: Icons.person,
                     label: 'Editar Perfil',
                     onTap: () {
-                      // Acción para editar el perfil
                       context.pushNamed(EditProfileScreen.name);
                     },
                     color: textColor,
@@ -88,7 +85,6 @@ class ProfileScreen extends StatelessWidget {
                     icon: Icons.settings,
                     label: 'Ajustes',
                     onTap: () {
-                      // Acción para ajustes
                       context.pushNamed(SettingScreen.name);
                     },
                     color: textColor,
@@ -97,7 +93,6 @@ class ProfileScreen extends StatelessWidget {
                     icon: Icons.help,
                     label: 'Ayuda',
                     onTap: () {
-                      // Acción para ayuda
                       context.pushNamed(HelpScreen.name);
                     },
                     color: textColor,
@@ -106,7 +101,6 @@ class ProfileScreen extends StatelessWidget {
                     icon: Icons.verified_user,
                     label: 'Política de privacidad',
                     onTap: () {
-                      // Acción para cerrar sesión
                       context.pushNamed(UserTermsScreen.name);
                     },
                     color: textColor,
@@ -115,7 +109,6 @@ class ProfileScreen extends StatelessWidget {
                     icon: Icons.logout,
                     label: 'Salir',
                     onTap: () {
-                      // Acción para cerrar sesión
                       context.pushNamed(LogoutScreen.name);
                     },
                     color: textColor,
@@ -155,8 +148,7 @@ class OptionItem extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: AppColors
-                    .secondaryColor, // Cambia este color si es necesario
+                color: AppColors.secondaryColor,
                 borderRadius: BorderRadius.circular(19),
               ),
               child: Icon(

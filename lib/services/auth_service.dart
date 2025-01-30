@@ -13,7 +13,6 @@ class AuthService {
         email: email.trim(),
         password: password.trim(),
       );
-      // Verificar si el usuario ha confirmado el correo
       if (!_firebaseAuth.currentUser!.emailVerified) {
         await _firebaseAuth.signOut();
         return 'Por favor, verifica tu correo antes de iniciar sesión.';
@@ -33,7 +32,6 @@ class AuthService {
           email: email.trim(),
           password: password.trim(),
         );
-        // Enviar correo de verificación
         await userCredential.user?.sendEmailVerification();
       }
       return null;
@@ -49,9 +47,9 @@ class AuthService {
   Future<String?> resetPassword(String email) async {
     try {
       await _firebaseAuth.sendPasswordResetEmail(email: email.trim());
-      return null; // Éxito
+      return null;
     } on FirebaseAuthException catch (e) {
-      return e.message; // Error
+      return e.message;
     }
   }
 }

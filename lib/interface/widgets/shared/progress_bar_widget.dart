@@ -110,7 +110,6 @@ class ProgressBarWidget extends StatelessWidget {
   }
 }
 
-// Triángulo para la punta de la burbuja
 class TrianglePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {

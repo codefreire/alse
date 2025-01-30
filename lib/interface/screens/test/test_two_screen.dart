@@ -41,7 +41,6 @@ class _TestTwoScreenState extends State<TestTwoScreen> {
 
   @override
   void dispose() {
-    // Liberar los recursos de los controladores
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();

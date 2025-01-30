@@ -27,15 +27,20 @@ class SettingScreen extends StatelessWidget {
               fontSize: 30,
               fontWeight: FontWeight.bold,
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 65),
               child: SwitchListTile(
-                title: const CustomLabelWidget(text: 'Modo Oscuro', fontSize: 18,),
-                value: context.watch<ThemeNotifier>().isDarkMode,
-                onChanged: (bool value) {
-                  context.read<ThemeNotifier>().toggleTheme();}
-              ),
+                  title: const CustomLabelWidget(
+                    text: 'Modo Oscuro',
+                    fontSize: 18,
+                  ),
+                  value: context.watch<ThemeNotifier>().isDarkMode,
+                  onChanged: (bool value) {
+                    context.read<ThemeNotifier>().toggleTheme();
+                  }),
             ),
           ],
         ),

@@ -16,17 +16,17 @@ class CardLearningWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-        side: BorderSide(
-          color: color,
-        )
-      ),
+          borderRadius: BorderRadius.circular(12),
+          side: BorderSide(
+            color: color,
+          )),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
             child: ClipRRect(
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(12)),
               child: Image.asset(
                 imagenUrl,
                 fit: BoxFit.cover,

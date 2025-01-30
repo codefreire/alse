@@ -21,11 +21,9 @@ class EditProfileScreen extends StatefulWidget {
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
   final fullnameController = TextEditingController();
-  //final emailController = TextEditingController();
 
-  File? _profileImage; // Para almacenar la imagen seleccionada
+  File? _profileImage;
   final String _defaultImage = 'assets/alse_profile.png';
-  //String _userName = "Alse";
 
   @override
   void initState() {
@@ -34,7 +32,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     _loadUserName();
   }
 
-  // Método para cargar la imagen guardada de forma persistente
   Future<void> _loadProfileImage() async {
     final prefs = await SharedPreferences.getInstance();
     final imagePath = prefs.getString('profileImage');
@@ -45,13 +42,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     }
   }
 
-  // Método para guardar la imagen de forma persistente
   Future<void> _saveProfileImage(String path) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('profileImage', path);
   }
 
-  // Método para seleccionar la imagen desde la galería o la cámara
   Future<void> _pickImage(ImageSource source) async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: source);
@@ -62,7 +57,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         });
         await _saveProfileImage(pickedFile.path);
 
-        // Solo realiza la actualización del perfil si el widget sigue montado
         if (mounted) {
           context
               .read<UserProfileProvider>()
@@ -72,7 +66,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     }
   }
 
-  // Mostrar las opciones (galería o cámara)
   void _showImagePickerOptions() {
     showModalBottomSheet(
       context: context,
@@ -85,16 +78,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 leading: const Icon(Icons.photo_library),
                 title: const Text('Seleccionar de la galería'),
                 onTap: () {
-                  context.pop(); // Cierra el modal
-                  _pickImage(ImageSource.gallery); // Abre la galería
+                  context.pop();
+                  _pickImage(ImageSource.gallery);
                 },
               ),
               ListTile(
                 leading: const Icon(Icons.camera_alt),
                 title: const Text('Tomar una foto'),
                 onTap: () {
-                  context.pop(); // Cierra el modal
-                  _pickImage(ImageSource.camera); // Abre la cámara
+                  context.pop();
+                  _pickImage(ImageSource.camera);
                 },
               ),
             ],
@@ -104,17 +97,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     );
   }
 
-  // Método para cargar el nombre guardado de forma persistente
   Future<void> _loadUserName() async {
     final prefs = await SharedPreferences.getInstance();
     final savedName = prefs.getString('userName') ?? "Alse";
-    // setState(() {
-    //   _userName = savedName;
-    //   fullnameController.text = savedName;
-    // });
   }
 
-  // Método para guardar el nombre de forma persistente
   Future<void> _saveUserName(String name) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('userName', name);
@@ -122,8 +109,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //final fullnameController = TextEditingController();
-    //final emailController = TextEditingController();
     final theme = Theme.of(context);
     final textColor = theme.brightness == Brightness.dark
         ? AppColors.tertiaryColor
@@ -148,8 +133,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   radius: 50,
                   backgroundImage: _profileImage != null
                       ? FileImage(_profileImage!) as ImageProvider
-                      : AssetImage(
-                          _defaultImage), // Cambia esta URL por tu imagen
+                      : AssetImage(_defaultImage),
                 ),
                 Positioned(
                     bottom: 0,
@@ -180,14 +164,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 color: textColor,
               ),
             ),
-            // const SizedBox(height: 4),
-            // const Text(
-            //   'youremail@gmail.com',
-            //   style: TextStyle(
-            //     fontSize: 14,
-            //     color: Colors.grey,
-            //   ),
-            // ),
             const Divider(
               height: 40,
               thickness: 1,
@@ -198,11 +174,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               placeholder: '',
               controller: fullnameController,
             ),
-            // CustomTextInputWidget(
-            //   label: 'Email',
-            //   placeholder: '',
-            //   controller: emailController,
-            // ),
             const SizedBox(
               height: 40,
             ),
@@ -211,11 +182,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               onPressed: () async {
                 final newName = fullnameController.text.trim();
                 if (newName.isNotEmpty) {
-                  await context.read<UserProfileProvider>().updateUsername(newName);
-                  //await _saveUserName(newName);
-                  // setState(() {
-                  //    _userName = newName;
-                  // });
+                  await context
+                      .read<UserProfileProvider>()
+                      .updateUsername(newName);
                   context.pop();
                 }
               },

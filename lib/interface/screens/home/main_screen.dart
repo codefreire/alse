@@ -33,13 +33,8 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: AppColors.primaryColor,
-      //   automaticallyImplyLeading: false,
-      // ),
+        child: Scaffold(
       body: _screens[_selectedIndex],
-      
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
@@ -57,7 +52,7 @@ class _MainScreenState extends State<MainScreen> {
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.auto_stories),//import_contacts_outlined    auto_stories
+              icon: Icon(Icons.auto_stories),
               label: '',
             ),
             BottomNavigationBarItem(
@@ -65,7 +60,6 @@ class _MainScreenState extends State<MainScreen> {
               label: '',
             ),
           ]),
-      )
-    );
+    ));
   }
 }

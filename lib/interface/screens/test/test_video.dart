@@ -30,7 +30,7 @@ class _TestVideoScreenState extends State<TestVideoScreen> {
 
   @override
   void dispose() {
-    _videoController.dispose(); // Libera recursos del controlador al cerrar
+    _videoController.dispose();
     super.dispose();
   }
 
@@ -74,24 +74,18 @@ class _TestVideoScreenState extends State<TestVideoScreen> {
                 child: Container(
                     margin:
                         EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
-                        padding: EdgeInsets.symmetric(
+                    padding: EdgeInsets.symmetric(
                         vertical: (screenHeight * (2 / 16)) * 0.20),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: FittedBox(
-                        fit: BoxFit.fill,
-                        child: YoutubePlayer(
-                        controller: _videoController,
-                        showVideoProgressIndicator: true,
-                        progressIndicatorColor: Colors.red,
-                      ),
-                      )
-                      
-                      
-                      
-                      
-                                            
-                    )),
+                        borderRadius: BorderRadius.circular(20),
+                        child: FittedBox(
+                          fit: BoxFit.fill,
+                          child: YoutubePlayer(
+                            controller: _videoController,
+                            showVideoProgressIndicator: true,
+                            progressIndicatorColor: Colors.red,
+                          ),
+                        ))),
               ),
               Expanded(
                 flex: 3,

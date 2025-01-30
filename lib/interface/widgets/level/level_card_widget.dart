@@ -8,16 +8,15 @@ class LevelCardWidget extends StatelessWidget {
   final double progreso;
   final String imagenUrl;
   final bool bloqueado;
-  
-  const LevelCardWidget({
-    required this.nivel,
-    required this.subtitulo,
-    required this.descripcion,
-    required this.progreso,
-    required this.imagenUrl,
-    this.bloqueado = false,
-    super.key
-  });
+
+  const LevelCardWidget(
+      {required this.nivel,
+      required this.subtitulo,
+      required this.descripcion,
+      required this.progreso,
+      required this.imagenUrl,
+      this.bloqueado = false,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +31,6 @@ class LevelCardWidget extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Row(
           children: [
-            // Imagen a la izquierda
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: Image.asset(
@@ -45,7 +43,6 @@ class LevelCardWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 10),
-            // Contenido textual
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +59,8 @@ class LevelCardWidget extends StatelessWidget {
                     subtitulo,
                     style: TextStyle(
                       fontSize: 14,
-                      color: bloqueado ? Colors.grey[600] : AppColors.primaryColor,
+                      color:
+                          bloqueado ? Colors.grey[600] : AppColors.primaryColor,
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -75,34 +73,6 @@ class LevelCardWidget extends StatelessWidget {
                     maxLines: 5,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  //const SizedBox(height: 16),
-                  // Barra de progreso y porcentaje
-                  // Row(
-                  //   children: [
-                  //     Expanded(
-                  //       child: LinearProgressIndicator(
-                  //         value: progreso / 100,
-                  //         backgroundColor: bloqueado
-                  //             ? Colors.grey[400]
-                  //             : Colors.grey[300],
-                  //         valueColor: AlwaysStoppedAnimation<Color>(
-                  //           bloqueado ? Colors.grey : AppColors.primaryColor,
-                  //         ),
-                  //       ),
-                  //     ),
-                  //     const SizedBox(width: 8),
-                  //     Padding(
-                  //       padding: const EdgeInsets.only(top: 20),
-                  //       child: Text(
-                  //         '${progreso.toInt()}% Completed',
-                  //         style: TextStyle(
-                  //           fontSize: 12,
-                  //           color: bloqueado ? Colors.grey : Colors.black,
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
                 ],
               ),
             ),

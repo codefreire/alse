@@ -26,7 +26,6 @@ class UserProfileProvider with ChangeNotifier {
     _profileImage = newImage;
     notifyListeners();
 
-    // Guardar la imagen en SharedPreferences
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('profileImage', newImage.path);
   }

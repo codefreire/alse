@@ -15,29 +15,49 @@ class LogoutScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
-        //automaticallyImplyLeading: false,
         iconTheme: const IconThemeData(
-            color: AppColors.tertiaryColor,
+          color: AppColors.tertiaryColor,
         ),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const CustomLabelWidget(text: 'Cerrar Sesión', fontWeight: FontWeight.bold,),
-            const SizedBox(height: 10,),
+            const CustomLabelWidget(
+              text: 'Cerrar Sesión',
+              fontWeight: FontWeight.bold,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
             const CustomLabelWidget(text: '¿Seguro?'),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             Container(
               height: 40,
-              padding: const EdgeInsets.symmetric(horizontal: 90,),
-              child: CustomButtomWidget(text: 'Si', textFontSize: 15, onPressed: () {SystemNavigator.pop();}),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 90,
+              ),
+              child: CustomButtomWidget(
+                  text: 'Si',
+                  textFontSize: 15,
+                  onPressed: () {
+                    SystemNavigator.pop();
+                  }),
             ),
-            const SizedBox(height: 12,),
+            const SizedBox(
+              height: 12,
+            ),
             Container(
               height: 40,
               padding: const EdgeInsets.symmetric(horizontal: 90),
-              child: CustomButtomWidget(text: 'No', textFontSize: 15,  onPressed: () {context.pop();}),
+              child: CustomButtomWidget(
+                  text: 'No',
+                  textFontSize: 15,
+                  onPressed: () {
+                    context.pop();
+                  }),
             ),
           ],
         ),

@@ -59,7 +59,6 @@ final appRouter = GoRouter(
         final myExtra = state.extra as Map<String, dynamic>;
         return LearningScreen(extraData: myExtra);
       } 
-      //=> const LearningScreen(),
     ),
     GoRoute(
       path: '/level',
@@ -73,7 +72,6 @@ final appRouter = GoRouter(
         final level = state.extra as Map<String, dynamic>? ?? {'level': 1};
         return QuestionScreen(level: level['level']);
       },
-      //=> const QuestionScreen(),
     ),
     GoRoute(
       path: '/score',
@@ -82,7 +80,6 @@ final appRouter = GoRouter(
         final myExtra = state.extra as Map<String, dynamic>;
         return ScoreScreen(extraData: myExtra);
       }
-      //=> const ScoreScreen(score: 6,),
     ),
     GoRoute(
       path: '/profile',

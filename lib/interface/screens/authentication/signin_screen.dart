@@ -22,7 +22,7 @@ class _SigninScreenState extends State<SigninScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
-  
+
   Future<void> _login() async {
     setState(() {
       _isLoading = true;
@@ -52,10 +52,10 @@ class _SigninScreenState extends State<SigninScreen> {
     await showDialog(
       context: context,
       builder: (context) {
-            final theme = Theme.of(context);
-    final textColor = theme.brightness == Brightness.dark
-        ? AppColors.tertiaryColor
-        : AppColors.primaryColor;
+        final theme = Theme.of(context);
+        final textColor = theme.brightness == Brightness.dark
+            ? AppColors.tertiaryColor
+            : AppColors.primaryColor;
         return StatefulBuilder(
           builder: (context, setState) {
             return AlertDialog(
@@ -81,9 +81,12 @@ class _SigninScreenState extends State<SigninScreen> {
               actions: [
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pop(); // Cierra el modal
+                    Navigator.of(context).pop();
                   },
-                  child: Text('Cancelar', style: TextStyle(color: textColor),),
+                  child: Text(
+                    'Cancelar',
+                    style: TextStyle(color: textColor),
+                  ),
                 ),
                 TextButton(
                   onPressed: isLoading
@@ -105,7 +108,8 @@ class _SigninScreenState extends State<SigninScreen> {
                             Navigator.of(context).pop();
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
-                                content: Text('Correo de restablecimiento enviado.'),
+                                content:
+                                    Text('Correo de restablecimiento enviado.'),
                               ),
                             );
                           } else {
@@ -114,7 +118,10 @@ class _SigninScreenState extends State<SigninScreen> {
                             );
                           }
                         },
-                  child: Text('Enviar', style: TextStyle(color: textColor),),
+                  child: Text(
+                    'Enviar',
+                    style: TextStyle(color: textColor),
+                  ),
                 ),
               ],
             );
@@ -126,7 +133,6 @@ class _SigninScreenState extends State<SigninScreen> {
 
   @override
   void dispose() {
-    // Liberar los recursos de los controladores
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
@@ -199,21 +205,21 @@ class _SigninScreenState extends State<SigninScreen> {
                   ),
                 ),
                 _isLoading
-                  ? const CircularProgressIndicator()
-                  :
-                Container(
-                  height: screenHeight * (2 / 16),
-                  margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
-                  padding: EdgeInsets.symmetric(
-                      vertical: (screenHeight * (2 / 16)) * 0.25),
-                  child: CustomButtomWidget(
-                    text: 'INICIAR SESIÓN',
-                    radius: 5,
-                    onPressed: _login,
-                    textFontSize: 20,
-                    colorText: AppColors.tertiaryColor,
-                  ),
-                ),
+                    ? const CircularProgressIndicator()
+                    : Container(
+                        height: screenHeight * (2 / 16),
+                        margin:
+                            EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
+                        padding: EdgeInsets.symmetric(
+                            vertical: (screenHeight * (2 / 16)) * 0.25),
+                        child: CustomButtomWidget(
+                          text: 'INICIAR SESIÓN',
+                          radius: 5,
+                          onPressed: _login,
+                          textFontSize: 20,
+                          colorText: AppColors.tertiaryColor,
+                        ),
+                      ),
                 Container(
                   height: screenHeight * (2 / 16),
                   margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),

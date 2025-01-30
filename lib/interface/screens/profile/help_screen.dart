@@ -26,30 +26,29 @@ class HelpScreen extends StatelessWidget {
       final newPassword = newPasswordController.text;
       final confirmPassword = confirmPasswordController.text;
 
-      // Verificar si las contraseñas coinciden
       if (newPassword != confirmPassword) {
-        // Mostrar mensaje de error si las contraseñas no coinciden
-        _showErrorDialog(context, 'Las contraseñas no coinciden.', newPasswordController, confirmPasswordController);
+        _showErrorDialog(context, 'Las contraseñas no coinciden.',
+            newPasswordController, confirmPasswordController);
         return;
       }
 
       try {
-        // Obtener el usuario actual
         User? user = FirebaseAuth.instance.currentUser;
 
         if (user != null) {
-          // Actualizar la contraseña
           await user.updatePassword(newPassword);
           await user.reload();
           user = FirebaseAuth.instance.currentUser;
 
-          // Mostrar un mensaje de éxito
-          _showSuccessDialog(context, 'Contraseña actualizada con éxito', newPasswordController, confirmPasswordController);
+          _showSuccessDialog(context, 'Contraseña actualizada con éxito',
+              newPasswordController, confirmPasswordController);
         } else {
-          _showErrorDialog(context, 'No se pudo obtener el usuario.', newPasswordController, confirmPasswordController);
+          _showErrorDialog(context, 'No se pudo obtener el usuario.',
+              newPasswordController, confirmPasswordController);
         }
       } catch (e) {
-        _showErrorDialog(context, 'Error al actualizar la contraseña: $e', newPasswordController, confirmPasswordController);
+        _showErrorDialog(context, 'Error al actualizar la contraseña: $e',
+            newPasswordController, confirmPasswordController);
       }
     }
 
@@ -68,7 +67,8 @@ class HelpScreen extends StatelessWidget {
                 Container(
                   height: availableHeight * (3 / 17),
                   margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
-                  padding: EdgeInsets.only(top: (availableHeight * (3 / 17)) * 0.50),
+                  padding:
+                      EdgeInsets.only(top: (availableHeight * (3 / 17)) * 0.50),
                   child: const CustomLabelWidget(
                     text: 'Cambie su contraseña',
                     fontSize: 28,
@@ -79,7 +79,8 @@ class HelpScreen extends StatelessWidget {
                   height: availableHeight * (2 / 17),
                   margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
                   child: const CustomLabelWidget(
-                    text: 'Restablezca su contraseña para recuperar el acceso a su recorrido de aprendizaje',
+                    text:
+                        'Restablezca su contraseña para recuperar el acceso a su recorrido de aprendizaje',
                     maxLines: 2,
                     textAlign: TextAlign.center,
                   ),
@@ -106,7 +107,8 @@ class HelpScreen extends StatelessWidget {
                 ),
                 Container(
                   height: availableHeight * (7 / 17),
-                  padding: EdgeInsets.only(bottom: (availableHeight * (7 / 17)) * 0.83),
+                  padding: EdgeInsets.only(
+                      bottom: (availableHeight * (7 / 17)) * 0.83),
                   margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
                   child: CustomButtomWidget(
                     text: 'GUARDAR',
@@ -119,12 +121,14 @@ class HelpScreen extends StatelessWidget {
               ],
             ),
           ),
-        )
-      );
+        ));
   }
 
-  // Función para mostrar un diálogo de error
-  void _showErrorDialog(BuildContext context, String message, TextEditingController newPasswordController, TextEditingController confirmPasswordController) {
+  void _showErrorDialog(
+      BuildContext context,
+      String message,
+      TextEditingController newPasswordController,
+      TextEditingController confirmPasswordController) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -139,7 +143,6 @@ class HelpScreen extends StatelessWidget {
                 confirmPasswordController.clear();
                 Navigator.of(context).pop();
                 context.pop();
-                //Navigator.of(context).pop();
               },
             ),
           ],
@@ -148,8 +151,11 @@ class HelpScreen extends StatelessWidget {
     );
   }
 
-  // Función para mostrar un diálogo de éxito
-  void _showSuccessDialog(BuildContext context, String message, TextEditingController newPasswordController, TextEditingController confirmPasswordController) {
+  void _showSuccessDialog(
+      BuildContext context,
+      String message,
+      TextEditingController newPasswordController,
+      TextEditingController confirmPasswordController) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -163,7 +169,7 @@ class HelpScreen extends StatelessWidget {
                 newPasswordController.clear();
                 confirmPasswordController.clear();
                 Navigator.of(context).pop();
-                context.pop(); // Regresar a la pantalla anterior
+                context.pop();
               },
             ),
           ],

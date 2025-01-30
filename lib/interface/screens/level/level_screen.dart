@@ -38,7 +38,6 @@ class LevelScreen extends StatelessWidget {
                   progreso: 79,
                   imagenUrl:
                       'assets/levelone.png'),
-              //imagenUrl: 'https://img.freepik.com/foto-gratis/retrato-mujer-comunicarse-traves-lenguaje-senas_23-2148590355.jpg?w=360'),
             ),
             GestureDetector(
               onTap: () => {context.pushNamed(
@@ -53,7 +52,6 @@ class LevelScreen extends StatelessWidget {
                 progreso: 79,
                 imagenUrl:
                     'assets/leveltwo.png',
-                //bloqueado: true,
               ),
             ),
             GestureDetector(
@@ -69,8 +67,6 @@ class LevelScreen extends StatelessWidget {
                 progreso: 0,
                 imagenUrl:
                     'assets/levelthree.png',
-                //imagenUrl: 'https://atmedios.com/pantallaaccesible/wp-content/uploads/2023/02/Blog-Sordos-570x291.jpg',
-                //bloqueado: true,
               ),
             )
           ]))

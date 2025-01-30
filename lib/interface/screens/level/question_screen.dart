@@ -22,10 +22,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
   @override
   void initState() {
     super.initState();
-    // Seleccionar preguntas según el nivel
     questions = _getQuestionsByLevel(widget.level);
 
-    // Inicializar el controlador con el primer video
     _youtubePlayerController = YoutubePlayerController(
       initialVideoId: questions.first['videoId'],
       flags: const YoutubePlayerFlags(
@@ -37,16 +35,12 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
   @override
   void dispose() {
-    // Liberar el controlador cuando no sea necesario
     _youtubePlayerController.dispose();
     super.dispose();
   }
 
   void _updateVideoController(String videoId) {
-    // Actualizar el video actual
-//    setState(() {
       _youtubePlayerController.load(videoId);
-//    });
   }
 
   List<Map<String, dynamic>> _getQuestionsByLevel(int level) {
@@ -92,7 +86,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
   int currentQuestionIndex = 0;
   String? selectedAnswer;
   bool? isCorrect;
-  int score = 0; // Puntaje acumulado
+  int score = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -141,13 +135,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
             padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
             child: YoutubePlayerBuilder(
               player: YoutubePlayer(
-                controller: _youtubePlayerController,//(
-                  //initialVideoId: currentQuestion['videoId'],
-                  //flags: const YoutubePlayerFlags(
-                    //autoPlay: false,
-                    //mute: false,
-                  //),
-                //),
+                controller: _youtubePlayerController,
                 showVideoProgressIndicator: true,
               ),
               builder: (context, player) => ClipRRect(
@@ -253,43 +241,10 @@ class _QuestionScreenState extends State<QuestionScreen> {
                 },
                 child: const Text('Siguiente'),
               ),
-              // ElevatedButton(
-              //   style: ElevatedButton.styleFrom(
-              //     backgroundColor: AppColors.tertiaryColor,
-              //     foregroundColor: isCorrect!
-              //         ? AppColors.correctAnswer
-              //         : AppColors.incorrectAnswer,
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(12),
-              //     ),
-              //   ),
-              //   onPressed: () {
-              //     Navigator.of(context).pop(); // Oculta el BottomSheet
-              //     goToNextQuestion();
-              //   },
-              //   child: const Text('Continuar'),
-              // ),
             ],
           ),
         );
       },
     );
   }
-
-  // void goToNextQuestion() {
-  //   setState(() {
-  //   if (currentQuestionIndex < questions.length - 1) {
-      
-  //       currentQuestionIndex++;
-        
-  //       selectedAnswer = null;
-  //       isCorrect = null;
-      
-  //   } else {
-  //     // Redirigir a la pantalla de puntaje
-  //     //context.pushNamed(ScoreScreen.name);
-  //     context.goNamed(ScoreScreen.name, extra: {'score': score, 'level': widget.level});
-  //   }
-  //   });
-  // }
 }
